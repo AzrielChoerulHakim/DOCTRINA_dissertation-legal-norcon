@@ -20,3 +20,16 @@ jobs:
           python scripts/doctrina_cli.py init --input examples/dissertation-draft-synthetic.txt --object concept --title "Kepentingan umum" --locus "simulasi" --out /tmp/doctrina-case.json
           python scripts/doctrina_cli.py check /tmp/doctrina-case.json --out /tmp/doctrina-audit.json
           python scripts/doctrina_cli.py report /tmp/doctrina-case.json --out /tmp/doctrina-review.md
+      - name: PILOT-002 published dissertation mechanical review (NOT a legal verdict)
+        run: |
+          python - <<'PY'
+          import json
+          import sys
+          sys.path[:0] = ["scripts", "tests"]
+          from doctrina_core import review
+          from test_pilot_gutierrez_2021 import build_pilot_case
+          result = review(build_pilot_case())
+          print(json.dumps(result, ensure_ascii=False, indent=2))
+          assert result["gate"] == "INTERNAL_REVISION_REQUIRED"
+          assert result["originality"].startswith("LOCKED")
+          PY
