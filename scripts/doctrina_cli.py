@@ -56,7 +56,7 @@ def main(argv=None) -> int:
     try:
         if args.command == "init":
             source = Path(args.input)
-            draft = source.read_text(encoding="utf-8")
+            draft = source.read_bytes().decode("utf-8")
             data = new_case(draft, args.object, args.title, locus=args.locus,
                             jurisdiction=args.jurisdiction, temporal_scope=args.temporal_scope,
                             source_filename=source.name)
@@ -82,7 +82,7 @@ def main(argv=None) -> int:
                 print(output, end="")
             return 2 if result["counts"]["UNVERIFIED"] else 0
         data = read_case(args.case)
-        original = (Path(args.original_draft).read_text(encoding="utf-8")
+        original = (Path(args.original_draft).read_bytes().decode("utf-8")
                     if getattr(args, "original_draft", None) else None)
         if args.command == "check":
             result = review(data, original_text=original)
