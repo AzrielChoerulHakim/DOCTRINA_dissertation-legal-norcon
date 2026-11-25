@@ -260,6 +260,10 @@ def inspect(case: dict, original_text: str | None) -> dict:
         elif any(x not in passage_map for x in context):
             add("CONTEXT_PASSAGE_NOT_FOUND", "critical", rid, "Context refers to a nonexistent passage")
             problem = True
+        elif r.get("passage_id") not in context:
+            add("CONTEXT_SOURCE_NOT_REVIEWED", "critical", rid,
+                "Include the quoted source paragraph among passages examined for voice and meaning")
+            problem = True
         if r.get("mode") == "inferred" and r.get("voice") == "author":
             add("PROPOSITION_NOT_AUTHOR_EXPLICIT", "review", rid,
                 "Inferred hidden premise cannot be described as explicitly written by author")
@@ -340,6 +344,13 @@ def inspect(case: dict, original_text: str | None) -> dict:
         if claim.get("provenance") == "author_explicit" and r.get("mode") != "explicit":
             add("GRAPH_EXPLICITNESS_LAUNDERING", "critical", str(cid),
                 "An inferred or paraphrased record cannot be silently labelled author_explicit")
+        if claim.get("attribution") == "author" and r.get("mode") == "question":
+            add("GRAPH_QUESTION_AS_ASSERTION", "critical", str(cid),
+                "Author's question is not automatically a proposition the author asserts")
+        if (claim.get("attribution") == "author" and r.get("mode") == "conditional"
+                and not nonempty(claim.get("qualifier"))):
+            add("GRAPH_CONDITION_DROPPED", "critical", str(cid),
+                "Conditional claim must preserve the antecedent or limiting qualifier")
         if claim.get("provenance") in ("researcher_approved", "author_explicit") and cid not in confirmed:
             add("GRAPH_APPROVAL_UNSUPPORTED", "critical", str(cid),
                 "Graph claims author approval unsupported by current self-attested source-bound P1 decision")
