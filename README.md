@@ -1,6 +1,6 @@
-# DOCTRINA v0.4 — Norm / Concept Dissertation Reasoning Core
+# DOCTRINA v0.4.1 — Norm / Concept Dissertation Reasoning + Original-Source Grounding
 
-**Status:** local-first v0.4 object/provenance and argument-review prototype with a backward-compatible v0.3 graph linter. **Not an autonomous semantic legal examiner or doctoral novelty-certification tool.**
+**Status:** local-first norm/concept structural argument review plus v0.4.1 offline original-source SHA-256/page/excerpt verification. Backward-compatible with v0.3 graph lint. **Not autonomous legal-validity, semantic inference, or doctoral novelty certification.**
 
 **CURRENT RESEARCH OBJECT SCOPE: ONLY NORMA or KONSEP.** The dissertation must identify a specific legal norm or a specific legal concept as the primary research object. Theories may support interpretation but are **not** research objects, targets for proof/falsification, or required original outputs. See [RFC-007: Norm / Concept Scope Freeze](docs/RFC-007-NORM-CONCEPT-SCOPE.md).
 
@@ -43,6 +43,22 @@ The CLI intake is intentionally incomplete until a real claim reconstruction is 
 - [Data schema v0.4](schemas/case-v0.4.schema.json)
 - [Implementation and limitations — RFC-009](docs/RFC-009-REASONING-CORE-IMPLEMENTATION.md)
 - [New v0.4 tests](tests/test_doctrina_core.py) and [GitHub Actions workflow](.github/workflows/test.yml)
+
+## v0.4.1 — Verify original PDF/text sources before relying on decisive quotations
+
+The source verifier examines the **actual local file bytes** against a previously recorded SHA-256, then searches the specified **0-based PDF page** for a short source excerpt. It differentiates exact, conservatively normalized, partial and unverified matches. This is evidence grounding, NOT a ruling about the document's doctrinal meaning or current legal validity.
+
+```bash
+python -m pip install 'pypdf>=4,<8'
+python scripts/doctrina_cli.py verify-sources \
+  --manifest private-sources.json \
+  --source-root private-originals \
+  --out integrity-report.local.json
+```
+
+See [RFC-011 — Source Grounding](docs/RFC-011-SOURCE-GROUNDING.md), [original-source schema](schemas/sources-v1.schema.json), [source verifier](scripts/verify_sources.py), and [source grounding tests](tests/test_source_grounding.py). The [public source-pin manifest](sources/public-originals-pinned.json) stores **only hashes, exact page indices, short excerpts and metadata** for one Edinburgh PhD thesis and one UK Court of Appeal judgment; full PDFs are never committed. GitHub Actions verifies original sources in a separate network-dependent step, and the artifact contains no original PDF bytes. The pilot script also records unavailable original sources rather than claiming success.
+
+**Next roadmap:** author-faithful reconstruction (P1), norm/concept inference adequacy (P2), real-chapter dependencies (P3), independent scholarly validation (P4), and three-type originality gate **last** (P5).
 
 ## Legacy v0.3 demonstration
 
