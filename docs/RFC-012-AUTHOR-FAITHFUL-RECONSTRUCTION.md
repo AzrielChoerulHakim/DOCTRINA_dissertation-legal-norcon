@@ -56,42 +56,21 @@ The P1 code **cannot automate Pass A's semantic attribution** nor Pass B's subst
 
 ## 4. Local working example (all sensitive work remains off-repository)
 
-Starting from a v0.4 case produced by \`scripts/doctrina_cli.py init\`:
+Run the fully synthetic example, with **no researcher approval**:
 
-\`\`\`bash
-python scripts/fidelity_cli.py start \
-  --case /private/case.json --draft /private/dissertation.txt \
-  --out /private/p1-case.json
-
-# Inspect actual paragraph and find the precise Unicode character offsets.
-# The quote, voice classification and propositional interpretation must be reviewed.
-python scripts/fidelity_cli.py propose \
-  --case /private/p1-case.json --id P1 --passage T0001 \
-  --span-start 0 --span-end 20 --quote "ACTUAL 20 CHARACTER QUOTE" \
-  --voice author --mode explicit \
-  --proposition "Proposed faithful reconstruction" \
-  --voice-basis "Reason this is the author's own voice" \
-  --context T0001 --out /private/p1-proposed.json
-
+```bash
+python scripts/demo_fidelity.py --out /tmp/doctrina-p1-demo.json
 python scripts/fidelity_cli.py check \
-  --case /private/p1-proposed.json --draft /private/dissertation.txt \
-  --format markdown --out /private/p1-review.md
+  --case /tmp/doctrina-p1-demo.json \
+  --draft examples/fidelity_draft_synthetic.txt \
+  --format markdown --out /tmp/doctrina-p1-review.md
+python scripts/doctrina_cli.py check /tmp/doctrina-p1-demo.json \
+  --original-draft examples/fidelity_draft_synthetic.txt
+```
 
-# ONLY the real researcher runs this interactively, reads displayed source/
-# proposal and types the claim-specific confirmation token.
-python scripts/fidelity_cli.py decide \
-  --case /private/p1-proposed.json --draft /private/dissertation.txt \
-  --id P1 --reviewer "Researcher" --decision accept \
-  --reason "Source and proposed meaning checked" \
-  --out /private/p1-reviewed.json
+For an authorized local dissertation, first initialize a v0.4 case from the original UTF-8 draft, then run fidelity_cli.py start. Use fidelity_cli.py propose to add exact passage spans, source voice, interpretation, modal status and contextual passage IDs. After inspection, **only the researcher** should run fidelity_cli.py decide in an interactive terminal, choosing accept/reject/revise and typing the claim-specific challenge. An AI may prepare the proposed interpretation but may not supply that human confirmation. All records and reports remain in local/private paths.
 
-# Unified graph + P1 check always requires the same external original file:
-python scripts/doctrina_cli.py check /private/p1-reviewed.json \
-  --original-draft /private/dissertation.txt
-\`\`\`
-
-All quoted arguments in examples above are **placeholders**, not an assertion about a real law or thesis. To edit a draft, update the input text and run \`fidelity_cli.py sync\` to produce a new version; the previous approvals remain on record but are **stale**. A record or premise revision also needs new explicit confirmation.
-
+After the source changes, run fidelity_cli.py sync, then redo the required context and approval checks. Existing source-bound decisions become stale; a fresh file hash cannot silently validate older approvals.
 ## 5. Cases that P1 must explicitly decline to certify
 
 - A quotation matches the model's own sample but not the original draft: **BLOCKED**.
