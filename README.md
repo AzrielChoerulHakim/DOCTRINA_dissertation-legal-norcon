@@ -54,6 +54,24 @@ python -m unittest discover -s tests -v
 
 Only Python standard library is required for the script. Full argument assessment, source-checking, theory interpretation and conceptual adjudication are **human-in-the-loop**.
 
+## Real dissertation excerpt pilots and next roadmap
+
+**Research pilots:** P002 (Gutierrez Raymondova, Edinburgh, 2021) and **seven additional real doctoral dissertations** P003–P009 (four legal concepts, three legal norms). This is **excerpt-level hypothesis testing on auditor-reconstructed graphs**, not validation of complete dissertations, of source-PDF bytes or of scholarly correctness.
+
+- [Seven-dissertation critical comparison and methodological limits](docs/PILOT-BATCH-P003-P009-RESULTS.md)
+- [RFC-010 — Evidence-driven post-batch development roadmap](docs/RFC-010-POST-BATCH-DEVELOPMENT-PLAN.md)
+- [P003–P009 source registry and short quotation fixtures](examples/dissertation_batch_003_009.json)
+- [Seven pilot tests and negative controls](tests/test_pilot_batch_003_009.py)
+- [Reproducible machine report generator](scripts/run_dissertation_batch.py)
+- [GitHub Actions: download machine reports](https://github.com/AzrielChoerulHakim/DOCTRINA_dissertation-legal-norcon/actions/workflows/test.yml)
+
+```bash
+python -m unittest discover -s tests -v
+python scripts/run_dissertation_batch.py --out-dir /tmp/doctrina-batch
+```
+
+**Current regression result:** 55/55 unit tests passed in the recorded P003–P009 run; CI also generated source-limited machine reports. This is **not a claim of semantic accuracy**, which awaits original-source anchoring and independent legal reviewers. The plan prioritizes source provenance, author-faithful reconstruction and normative/conceptual inference *before* final novelty assessment.
+
 ## Authority and confidentiality
 
 No unfinished dissertation, client material or copyrighted full-text corpus is included. The example is original and synthetic. Keep actual unpublished manuscripts outside public GitHub; publish only schemas, procedures, anonymized fixtures and licensed source snippets.
