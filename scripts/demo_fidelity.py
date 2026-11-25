@@ -16,7 +16,7 @@ TEXT_FILE = ROOT / "examples" / "fidelity_draft_synthetic.txt"
 
 
 def example():
-    text = TEXT_FILE.read_text(encoding="utf-8")
+    text = TEXT_FILE.read_bytes().decode("utf-8")
     case = new_case(text, "concept", "Kepentingan umum",
                     locus="penggunaan istilah dalam norma hipotetis",
                     jurisdiction="Indonesia", source_filename=TEXT_FILE.name)
