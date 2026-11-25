@@ -223,18 +223,27 @@ def validate(case: dict) -> list[dict]:
     return findings
 
 
-def review(case: dict) -> dict:
+def review(case: dict, *, original_text: str | None = None) -> dict:
     findings = validate(case)
     claims = case.get("claims", [])
     graph = None
     if isinstance(claims, list) and claims and all(isinstance(c, dict) for c in claims):
         graph = audit_document(case, "draft")
         findings.extend(graph.get("findings", []))
+    fidelity = None
+    if isinstance(case.get("reconstruction"), dict):
+        # P1 checks are fail-closed without a separately supplied original
+        # file. Existing v0.3 / v0.4 cases remain backward-compatible.
+        from doctrina_fidelity import inspect
+        fidelity = inspect(case, original_text)
+        findings.extend(fidelity["findings"])
     critical = sum(x["level"] == "critical" for x in findings)
     if critical:
         gate = "INTERNAL_REVISION_REQUIRED"
     elif not claims:
         gate = "DRAFT_RECONSTRUCTION_REQUIRED"
+    elif fidelity and fidelity["gate"] != "SELF_ATTESTED_FIDELITY_ONLY":
+        gate = "FIDELITY_REVIEW_REQUIRED"
     elif findings:
         gate = "STRUCTURAL_REVIEW_WITH_LIMITATIONS"
     else:
@@ -245,12 +254,13 @@ def review(case: dict) -> dict:
         "counts": {"critical": critical, "other": len(findings)-critical},
         "findings": findings, "review_questions": QUESTIONS.get(t, []),
         "originality": "LOCKED (normative / interpretative / conceptual only, final stage)",
+        "fidelity": fidelity,
         "disclaimer": "This is mechanical lint, NOT validation of legal meaning, substantive inference or academic novelty",
     }
 
 
-def markdown_report(case: dict) -> str:
-    result = review(case)
+def markdown_report(case: dict, *, original_text: str | None = None) -> str:
+    result = review(case, original_text=original_text)
     obj = case.get("research_object", {})
     draft = case.get("draft", {})
     passages = {p.get("id"): p for p in draft.get("passages", []) if isinstance(p, dict)}
@@ -297,6 +307,9 @@ def markdown_report(case: dict) -> str:
         "**Final originality:** LOCKED. No normative, interpretative or conceptual novelty verdict has been made.",
         "",
     ]
+    if isinstance(case.get("reconstruction"), dict):
+        from doctrina_fidelity import render_report
+        lines += ["", "---", "", render_report(case, original_text)]
     return "\n".join(lines)
 
 
