@@ -4,6 +4,19 @@
 **Prior design:** [RFC-010](RFC-010-POST-BATCH-DEVELOPMENT-PLAN.md), Work Package 01 (P0).  
 **Research scope:** dissertation on **legal norm or legal concept** only. Normative, interpretative and conceptual novelty remain final-stage concerns.
 
+## Verified original-source integration evidence
+
+Fresh, separate GitHub Actions execution after committing source pins:
+
+- **Edinburgh University PhD dissertation (McMillan, 2018)** — original PDF downloaded from the official university bitstream; SHA-256 `e2334f05eed785d95ffa4fd8a25adc798ba34fe7657e457d9ca53dc51294b706`, **PDF page index 1**, short title excerpt matched `VERIFIED_EXACT`.
+- **Court of Appeal judgment *MGN v Gulati* (2015)** — original PDF downloaded from judiciary.uk; SHA-256 `c5b738a70d81f0d0f7242cc78d85b68d4768e792018742f8a3be6d9fdae91e81`, **PDF page index 0**, neutral citation excerpt matched `VERIFIED_EXACT`.
+
+Previously pinned hashes/page indices: [source manifest](../sources/public-originals-pinned.json). **Independent fresh retrieval verification:** [GitHub Actions 45572099628](https://github.com/AzrielChoerulHakim/DOCTRINA_dissertation-legal-norcon/actions/runs/45572099628), with log entry `COMMITTED_PIN_VERIFICATION PASSED`.
+
+Other attempts: Oxford open repository returned HTTP 403; Durham URL returned HTTP 404; Edinburgh Downey source was accessible but the selected title excerpt had not been anchored to a unique PDF page. These cases were **not counted as verified**. Their failures do not invalidate the two independently pinned examples.
+
+**Important precision:** the two pinned excerpts are short source-identification passages. They verify source-byte/page/quotation infrastructure, **not a thesis's substantive inferential warrants or the applicability of the court ruling to a specific legal claim**.
+
 ## What has been implemented
 
 - \`scripts/verify_sources.py\`: **offline** original-source verification for local UTF-8 sources and local PDF files with extractable text (via \`pypdf\`). No OCR, network, upload, discovery service or source corpus is bundled. 
