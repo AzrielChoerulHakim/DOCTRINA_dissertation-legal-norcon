@@ -1,8 +1,17 @@
-# DOCTRINA v0.3 — Internal Argumentation for Ongoing Doctoral Dissertations
+# DOCTRINA — Norm / Concept Dissertation Argumentation (v0.3.1 Scope)
 
 **Status:** functional design prototype + executable structural argument lint; not a certified doctoral examiner or a full legal reasoner.
 
+**CURRENT RESEARCH OBJECT SCOPE: ONLY NORMA or KONSEP.** The dissertation must identify a specific legal norm or a specific legal concept as the primary research object. Theories may support interpretation but are **not** research objects, targets for proof/falsification, or required original outputs. See [RFC-007: Norm / Concept Scope Freeze](docs/RFC-007-NORM-CONCEPT-SCOPE.md).
+
 **Design shift from v0.2:** the central objective is the *internal examination of the argument within an ongoing normative–conceptual law dissertation*. Final evaluation of originality occurs **after** internal audit, dialectical challenge, dissertation integration and a human-reviewed defense rehearsal. Prior scholarship remains available throughout for doctrinal and conceptual interpretation.
+
+## What DOCTRINA actually examines
+
+- **NORMA:** text/source, applicability, hierarchy, interpretation, exceptions, coherence and normative consequences of an identifiable legal rule or principle.
+- **KONSEP:** meaning, competing definitions/conceptions, boundary cases, internal coherence and implications of an identifiable legal concept.
+- **Central process:** reconstruct the author's claims about the norm/concept, challenge their internal warrants and cross-chapter dependencies, then evaluate the strongest alternative interpretation. **Originality is assessed last.**
+- **Theory:** a supporting tool only. DOCTRINA does not evaluate whole theories as doctoral research objects or demand the creation of a general legal theory.
 
 ## Start here
 
@@ -33,8 +42,9 @@ No unfinished dissertation, client material or copyrighted full-text corpus is i
 
 Initial repository import from **DOCTRINA v0.3 — Internal Argumentation Engine**. The initial package is a prototype and is **not academically validated**. Source history: project RFC-005 and the local v0.3 package.
 
-## Methodological research: v0.4 (design, not yet implemented)
+## Methodological research and scope decisions
 
+- **CURRENT SCOPE:** [RFC-007 — NORMA / KONSEP Only](docs/RFC-007-NORM-CONCEPT-SCOPE.md) supersedes any broader historical examples involving theories as research objects.
 - [RFC-006 — Normative–Conceptual Doctoral Research](docs/RFC-006-NORMATIVE-CONCEPTUAL-DOCTORAL-RESEARCH.md) distinguishes doctrinal, conceptual, interpretive, ontological, critical and normative claims, and proposes five high-risk transitions to audit.
 - [Conceptual Research Charter](skills/doctrina/templates/conceptual-research-charter.md) provides a live-draft worksheet for the author's actual research problem, methodology, theory roles, argument scope, chapter spine and human revision decisions.
-- **Release status:** production `SKILL.md` and executable Python linter remain v0.3. RFC-006 is methodological research awaiting schema migration, expert review and regression tests. No semantic doctoral-reasoning capability has been certified.
+- **Release status:** `SKILL.md` now declares the NORMA/KONSEP-only scope (v0.3.1 instructions). The Python linter and its 18 previously documented mechanical tests remain v0.3 and **do not yet enforce research-object typing**. RFC-006 and RFC-007 contain research/design rules; implementing a schema migration, expert review and regression tests remains future work. No semantic doctoral-reasoning capability has been certified.
