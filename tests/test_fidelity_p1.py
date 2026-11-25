@@ -45,7 +45,7 @@ def add_record(case, rid="P1", passage="T0001",
         "voice": voice, "mode": mode,
         "proposition": "Pembatasan kewenangan perlu dikaji untuk konsep kepentingan umum.",
         "voice_basis": "Kalimat penulis pada paragraf bersangkutan; belum disahkan",
-        "context_passage_ids": ["T0001", "T0002"],
+        "context_passage_ids": list(dict.fromkeys([passage, "T0001", "T0002"])),
         "premise_ids": premises if premises is not None else [],
         "proposed_by": "auditor_unapproved",
     }
