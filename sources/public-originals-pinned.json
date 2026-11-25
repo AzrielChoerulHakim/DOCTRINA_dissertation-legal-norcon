@@ -1,0 +1,46 @@
+{
+  "schema_version": "sources-v1",
+  "pin_provenance": {
+    "first_discovery_workflow_run": "https://github.com/AzrielChoerulHakim/DOCTRINA_dissertation-legal-norcon/actions/runs/45571875638",
+    "date_recorded": "2026-11-25",
+    "caution": "Hash and page were discovered in prior run; fresh download must pass against these committed pins. Printed pagination and law-in-force claims are not attested."
+  },
+  "sources": [
+    {
+      "source_id": "EDINBURGH_MCMILLAN_2018",
+      "source_kind": "thesis_pdf",
+      "repository_url": "https://hdl.handle.net/1842/31550",
+      "download_url": "https://era.ed.ac.uk/server/api/core/bitstreams/2e0c8ff5-f9a8-4939-bf8e-4e79ac078f07/content",
+      "local_path": "mcmillan-2018.pdf",
+      "content_sha256": "e2334f05eed785d95ffa4fd8a25adc798ba34fe7657e457d9ca53dc51294b706",
+      "retrieved_at": "2026-11-25",
+      "publication_year": 2018,
+      "edition": "University of Edinburgh thesis deposit",
+      "jurisdiction": "United Kingdom",
+      "applicability_date": null,
+      "extraction_method": "pypdf",
+      "page_index": 1,
+      "printed_page": null,
+      "anchor_text": "The Human Embryo",
+      "verification_state": "VERIFIED_EXACT"
+    },
+    {
+      "source_id": "EWCA_GULATI_2015",
+      "source_kind": "legal_pdf",
+      "repository_url": "https://www.judiciary.uk/wp-content/uploads/2015/12/representative-claimants-v-mgn.pdf",
+      "download_url": "https://www.judiciary.uk/wp-content/uploads/2015/12/representative-claimants-v-mgn.pdf",
+      "local_path": "gulati-2015.pdf",
+      "content_sha256": "c5b738a70d81f0d0f7242cc78d85b68d4768e792018742f8a3be6d9fdae91e81",
+      "retrieved_at": "2026-11-25",
+      "publication_year": 2015,
+      "edition": "Court of Appeal judgment 17 December 2015",
+      "jurisdiction": "England and Wales",
+      "applicability_date": "2015-12-17",
+      "extraction_method": "pypdf",
+      "page_index": 0,
+      "printed_page": null,
+      "anchor_text": "Neutral Citation Number: [2015] EWCA Civ 1291",
+      "verification_state": "VERIFIED_EXACT"
+    }
+  ]
+}
