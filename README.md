@@ -32,3 +32,9 @@ No unfinished dissertation, client material or copyrighted full-text corpus is i
 ## Provenance
 
 Initial repository import from **DOCTRINA v0.3 — Internal Argumentation Engine**. The initial package is a prototype and is **not academically validated**. Source history: project RFC-005 and the local v0.3 package.
+
+## Methodological research: v0.4 (design, not yet implemented)
+
+- [RFC-006 — Normative–Conceptual Doctoral Research](docs/RFC-006-NORMATIVE-CONCEPTUAL-DOCTORAL-RESEARCH.md) distinguishes doctrinal, conceptual, interpretive, ontological, critical and normative claims, and proposes five high-risk transitions to audit.
+- [Conceptual Research Charter](skills/doctrina/templates/conceptual-research-charter.md) provides a live-draft worksheet for the author's actual research problem, methodology, theory roles, argument scope, chapter spine and human revision decisions.
+- **Release status:** production `SKILL.md` and executable Python linter remain v0.3. RFC-006 is methodological research awaiting schema migration, expert review and regression tests. No semantic doctoral-reasoning capability has been certified.
