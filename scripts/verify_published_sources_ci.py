@@ -107,6 +107,9 @@ def main() -> int:
     work = args.out_dir
     originals = work / "private-original-bytes"
     originals.mkdir(parents=True, exist_ok=True)
+    pinned_path = Path(__file__).resolve().parents[1] / "sources" / "public-originals-pinned.json"
+    pinned_manifest = json.loads(pinned_path.read_text(encoding="utf-8"))
+    pinned = {s["source_id"]: s for s in pinned_manifest["sources"]}
     reports = []
     proposed_pins = []
     for item in PUBLIC_CASES:
@@ -115,15 +118,24 @@ def main() -> int:
         original = originals / case["local_path"]
         try:
             download_public(case["download_url"], original)
-            first = verify_source({**case, "page_index": None}, originals)
-            pages = first.get("discovered_page_indices", [])
-            proposed = {**case, "page_index": pages[0] if len(pages) == 1 else None,
-                        "content_sha256": first["sha256_actual"]}
-            check = verify_source(proposed, originals) if proposed["page_index"] is not None else first
-            check["preliminary_unpinned_discovery"] = True
-            check["proposed_hash_pin"] = first["sha256_actual"]
-            check["original_pdf_size_bytes"] = original.stat().st_size
-            proposed_pins.append(proposed)
+            if case["source_id"] in pinned:
+                fixed = pinned[case["source_id"]]
+                if fixed["download_url"] != case["download_url"] or fixed["local_path"] != case["local_path"]:
+                    raise ValueError("PIN_SOURCE_MISMATCH: downloaded target differs from committed pinned original")
+                check = verify_source(fixed, originals)
+                check["preliminary_unpinned_discovery"] = False
+                check["pin_source"] = "sources/public-originals-pinned.json"
+                check["original_pdf_size_bytes"] = original.stat().st_size
+            else:
+                first = verify_source({**case, "page_index": None}, originals)
+                pages = first.get("discovered_page_indices", [])
+                proposed = {**case, "page_index": pages[0] if len(pages) == 1 else None,
+                            "content_sha256": first["sha256_actual"]}
+                check = verify_source(proposed, originals) if proposed["page_index"] is not None else first
+                check["preliminary_unpinned_discovery"] = True
+                check["proposed_hash_pin"] = first["sha256_actual"]
+                check["original_pdf_size_bytes"] = original.stat().st_size
+                proposed_pins.append(proposed)
         except Exception as exc:
             check = {"source_id": case["source_id"], "state": "UNVERIFIED",
                      "error": type(exc).__name__ + ": " + str(exc)[:220],
@@ -139,12 +151,15 @@ def main() -> int:
         json.dumps({"sources": proposed_pins}, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8")
     # Never upload original bytes as a workflow artifact.
-    thesis_ok = any(x.get("source_kind") == "thesis_pdf" and x.get("state") in {"VERIFIED_EXACT", "VERIFIED_NORMALIZED"} for x in reports)
-    # Some open repositories reject automated download; require *at least one* genuine thesis
-    # and the public original court judgment, rather than hiding source-specific failures.
-    thesis_ok = any(x.get("source_id", "").startswith(("OXFORD_", "EDINBURGH_", "DURHAM_")) and x.get("state") in {"VERIFIED_EXACT", "VERIFIED_NORMALIZED"} for x in reports)
-    law_ok = any(x.get("source_id") == "EWCA_GULATI_2015" and x.get("state") in {"VERIFIED_EXACT", "VERIFIED_NORMALIZED"} for x in reports)
-    return 0 if thesis_ok and law_ok else 2
+    # Explicitly require the two PREVIOUSLY COMMITTED pins to match FRESH downloads.
+    expected_ids = {"EDINBURGH_MCMILLAN_2018", "EWCA_GULATI_2015"}
+    verified_pinned = {x.get("source_id") for x in reports
+                       if x.get("state") in {"VERIFIED_EXACT", "VERIFIED_NORMALIZED"}
+                       and x.get("preliminary_unpinned_discovery") is False}
+    print("COMMITTED_PIN_VERIFICATION",
+          "PASSED" if expected_ids.issubset(verified_pinned) else "FAILED",
+          sorted(verified_pinned))
+    return 0 if expected_ids.issubset(verified_pinned) else 2
 
 
 if __name__ == "__main__":
