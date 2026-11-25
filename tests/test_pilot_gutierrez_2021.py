@@ -125,7 +125,7 @@ class PublishedDissertationPilot(unittest.TestCase):
 
     def test_pilot_04_report_names_provisional_inference(self):
         report = markdown_report(build_pilot_case())
-        self.assertIn("Ch 4 p 154", report)
+        self.assertIn("ch 4 p 154", report)
         self.assertIn("AI_PROPOSED" if "AI_PROPOSED" in report else "ai_proposed", report)
         self.assertIn("IA-06", report)
         self.assertIn("LOCKED", report)
