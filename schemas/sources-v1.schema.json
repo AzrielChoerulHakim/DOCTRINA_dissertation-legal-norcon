@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AzrielChoerulHakim/DOCTRINA_dissertation-legal-norcon/blob/main/schemas/sources-v1.schema.json",
+  "title": "DOCTRINA local original-source grounding manifest",
+  "description": "Source hashes and text verification are mechanically checked. Edition, jurisdiction, printed page, law-in-force and scholarly interpretation require independent review.",
+  "type": "object",
+  "required": [
+    "sources"
+  ],
+  "properties": {
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": [
+        "source_id",
+        "source_kind",
+        "local_path",
+        "anchor_text",
+        "repository_url",
+        "content_sha256",
+        "page_index",
+        "extraction_method"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_kind": {
+          "enum": [
+            "thesis_pdf",
+            "legal_pdf",
+            "pdf",
+            "text_utf8"
+          ]
+        },
+        "repository_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "download_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "local_path": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Relative path inside local --source-root, never a full private path"
+        },
+        "content_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "retrieved_at": {
+          "type": "string",
+          "description": "Recorded retrieval UTC date (metadata only)"
+        },
+        "publication_year": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "edition": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "jurisdiction": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "applicability_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Claimed legal applicability date, not validated by excerpt match"
+        },
+        "extraction_method": {
+          "enum": [
+            "pypdf",
+            "utf8_text"
+          ]
+        },
+        "page_index": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Zero-indexed PDF page, independent of printed page"
+        },
+        "printed_page": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Original printed page label, may differ from PDF index"
+        },
+        "anchor_text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Exact original-source excerpt; keep public fixture <=25 words"
+        },
+        "text_span": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "start": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "end": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "verification_state": {
+          "enum": [
+            "VERIFIED_EXACT",
+            "VERIFIED_NORMALIZED",
+            "PARTIAL",
+            "UNVERIFIED"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
