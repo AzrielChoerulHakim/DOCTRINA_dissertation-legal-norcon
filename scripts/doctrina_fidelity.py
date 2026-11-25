@@ -304,16 +304,23 @@ def inspect(case: dict, original_text: str | None) -> dict:
             "self_attested_not_identity_verified": status == "RESEARCHER_CONFIRMED",
         })
 
-    # Approval is not transitive unless every premise was itself confirmed and current.
-    for s in states:
-        if s["status"] == "RESEARCHER_CONFIRMED":
+    # Fixed point: approval of a derived record is valid only if ALL its premises
+    # remain confirmed. Iterate to avoid depending on insertion / JSON record order.
+    changed = True
+    while changed:
+        changed = False
+        for s in states:
+            if s["status"] != "RESEARCHER_CONFIRMED":
+                continue
             rec = records[s["id"]]
-            uncertain_parents = [pid for pid in rec.get("premise_ids", []) if pid not in confirmed]
-            if uncertain_parents:
+            parents = rec.get("premise_ids", [])
+            uncertain = [pid for pid in parents if pid not in confirmed] if isinstance(parents, list) else ["INVALID_PREMISES"]
+            if uncertain:
                 s["status"] = "UNREVIEWABLE"
                 add("DEPENDENCY_UNCONFIRMED", "major", s["id"],
-                    "Derived proposition depends on unapproved/invalid premises: " + ", ".join(uncertain_parents))
+                    "Derived proposition depends on unapproved/invalid premises: " + ", ".join(uncertain))
                 confirmed.discard(s["id"])
+                changed = True
     # Critical safeguard: a preexisting v0.4 graph may falsely claim approval.
     for claim in case.get("claims", []):
         if not isinstance(claim, dict):
@@ -378,8 +385,12 @@ def add_decision(case: dict, original_text: str, rid: str, reviewer_label: str,
     rid_map = {r["id"]: r for r in case["reconstruction"]["records"]}
     if rid not in rid_map:
         raise ValueError("No such claim")
+    # A stale previous decision is expected during legitimate revision: a NEW
+    # explicit decision supersedes it. Never override source/hash/span errors.
     fatal = [f for f in review["findings"]
-             if f["level"] == "critical" and f["target"] in {rid, "draft", "draft.sha256"}]
+             if f["level"] == "critical"
+             and f["target"] in {rid, "draft", "draft.sha256"}
+             and f["code"] not in {"APPROVAL_STALE"}]
     if fatal:
         raise ValueError("Source/record is invalid; cannot record approval")
     fingerprints, cycles, missing = _fingerprints(rid_map, case["reconstruction"]["draft_sha256"])
