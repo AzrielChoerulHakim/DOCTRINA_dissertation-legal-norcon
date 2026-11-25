@@ -1,0 +1,23 @@
+{
+  "mode": "draft",
+  "gate": "INTERNAL_REVISION_REQUIRED",
+  "counts": {
+    "critical": 1,
+    "other": 1
+  },
+  "findings": [
+    {
+      "code": "IA-06",
+      "level": "critical",
+      "target": "C1",
+      "explanation": "Normative conclusion lacks declared normative premise or normative_bridge"
+    },
+    {
+      "code": "OPEN_SERIOUS_OBJECTION",
+      "level": "review",
+      "target": "O1",
+      "explanation": "Open major objection prevents completed dialectical review"
+    }
+  ],
+  "disclaimer": "Only mechanical checks of declarations and links; NOT semantic validity, scholarly originality, or doctoral approval"
+}

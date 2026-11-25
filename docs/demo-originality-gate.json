@@ -1,0 +1,47 @@
+{
+  "mode": "pre-originality",
+  "gate": "ORIGINALITY_REVIEW_INCOMPLETE",
+  "counts": {
+    "critical": 6,
+    "other": 0
+  },
+  "findings": [
+    {
+      "code": "OPEN_SERIOUS_OBJECTION",
+      "level": "critical",
+      "target": "O1",
+      "explanation": "Open major objection prevents completed dialectical review"
+    },
+    {
+      "code": "REVIEW_NOT_PASSED",
+      "level": "critical",
+      "target": "internal_review",
+      "explanation": "Required review not recorded as passed; this is a declaration, not independent verification"
+    },
+    {
+      "code": "REVIEW_NOT_PASSED",
+      "level": "critical",
+      "target": "dialectical_review",
+      "explanation": "Required review not recorded as passed; this is a declaration, not independent verification"
+    },
+    {
+      "code": "REVIEW_NOT_PASSED",
+      "level": "critical",
+      "target": "integration_review",
+      "explanation": "Required review not recorded as passed; this is a declaration, not independent verification"
+    },
+    {
+      "code": "REVIEW_NOT_PASSED",
+      "level": "critical",
+      "target": "defense_review",
+      "explanation": "Required review not recorded as passed; this is a declaration, not independent verification"
+    },
+    {
+      "code": "NO_RESEARCHER_APPROVAL",
+      "level": "critical",
+      "target": "project",
+      "explanation": "Researcher must authorize final originality review"
+    }
+  ],
+  "disclaimer": "Only mechanical checks of declarations and links; NOT semantic validity, scholarly originality, or doctoral approval"
+}

@@ -1,0 +1,23 @@
+test_M01_positive_complete_synthetic (test_argument_graph.ArgumentGraphTests.test_M01_positive_complete_synthetic) ... ok
+test_M02_missing_derived_warrant (test_argument_graph.ArgumentGraphTests.test_M02_missing_derived_warrant) ... ok
+test_M03_dangling_premise (test_argument_graph.ArgumentGraphTests.test_M03_dangling_premise) ... ok
+test_M04_descriptive_only_to_normative_is_blocked (test_argument_graph.ArgumentGraphTests.test_M04_descriptive_only_to_normative_is_blocked) ... ok
+test_M05_explicit_bridge_is_not_auto_rejected (test_argument_graph.ArgumentGraphTests.test_M05_explicit_bridge_is_not_auto_rejected) ... ok
+test_M06_recursive_cycle_is_review_not_auto_fallacy (test_argument_graph.ArgumentGraphTests.test_M06_recursive_cycle_is_review_not_auto_fallacy) ... ok
+test_M07_unverified_verbatim_quote_is_blocked (test_argument_graph.ArgumentGraphTests.test_M07_unverified_verbatim_quote_is_blocked) ... ok
+test_M08_open_serious_objection_blocks_final (test_argument_graph.ArgumentGraphTests.test_M08_open_serious_objection_blocks_final) ... ok
+test_M09_revision_cascades_to_claim_and_chapters (test_argument_graph.ArgumentGraphTests.test_M09_revision_cascades_to_claim_and_chapters) ... ok
+test_M10_incomplete_reviews_block_final (test_argument_graph.ArgumentGraphTests.test_M10_incomplete_reviews_block_final) ... ok
+test_M11_direct_self_dependency_blocked (test_argument_graph.ArgumentGraphTests.test_M11_direct_self_dependency_blocked) ... ok
+test_M12_duplicate_id_blocked (test_argument_graph.ArgumentGraphTests.test_M12_duplicate_id_blocked) ... ok
+test_M13_metadata_not_substantive_evidence (test_argument_graph.ArgumentGraphTests.test_M13_metadata_not_substantive_evidence) ... ok
+test_M14_ready_only_for_last_review_not_novelty_certification (test_argument_graph.ArgumentGraphTests.test_M14_ready_only_for_last_review_not_novelty_certification) ... ok
+test_M15_absent_researcher_approval_blocks_final (test_argument_graph.ArgumentGraphTests.test_M15_absent_researcher_approval_blocks_final) ... ok
+test_M16_cross_chapter_link_missing (test_argument_graph.ArgumentGraphTests.test_M16_cross_chapter_link_missing) ... ok
+test_M17_declared_contradiction_requires_review (test_argument_graph.ArgumentGraphTests.test_M17_declared_contradiction_requires_review) ... ok
+test_M18_nonexistent_claim_impact_returns_error (test_argument_graph.ArgumentGraphTests.test_M18_nonexistent_claim_impact_returns_error) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.002s
+
+OK

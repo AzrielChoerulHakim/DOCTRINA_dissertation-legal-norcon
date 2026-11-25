@@ -1,0 +1,11 @@
+{
+  "changed_id": "P2",
+  "downstream_claim_ids": [
+    "C1"
+  ],
+  "affected_chapter_ids": [
+    "CH1",
+    "CH2"
+  ],
+  "action": "RE_REVIEW_REQUIRED; approvals are not inherited"
+}

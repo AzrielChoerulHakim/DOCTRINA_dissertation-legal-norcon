@@ -1,0 +1,98 @@
+{
+  "project": {
+    "title": "Ilustrasi konseptual kepentingan umum (bukan hasil penelitian hukum positif)",
+    "jurisdiction": "Indonesia (hanya ruang ilustrasi)",
+    "method": "normatif-konseptual, interpretatif-kritis",
+    "status": "synthetic-demo"
+  },
+  "central_claim_id": "C1",
+  "sources": [],
+  "claims": [
+    {
+      "id": "P1",
+      "kind": "conceptual",
+      "role": "premise",
+      "text": "Penetapan definisi legal dan justifikasi normatif atas penggunaannya adalah dua jenis pertanyaan yang dapat dibedakan.",
+      "chapter_id": "CH1",
+      "premises": [],
+      "inference": "assertion",
+      "scope": {
+        "concept": "kepentingan umum",
+        "time": "abstrak"
+      },
+      "quotes": []
+    },
+    {
+      "id": "P2",
+      "kind": "normative",
+      "role": "premise",
+      "text": "Pembatasan hak yang memengaruhi pihak tertentu membutuhkan alasan normatif yang dapat dipertanggungjawabkan.",
+      "chapter_id": "CH1",
+      "premises": [],
+      "inference": "assertion",
+      "scope": {
+        "concept": "justifikasi pembatasan hak",
+        "time": "abstrak"
+      },
+      "quotes": []
+    },
+    {
+      "id": "C1",
+      "kind": "normative",
+      "role": "derived",
+      "text": "Pemberian label formal kepentingan umum tidak dengan sendirinya cukup untuk menjustifikasi setiap akibat pembatasan hak.",
+      "chapter_id": "CH2",
+      "premises": [
+        "P1",
+        "P2"
+      ],
+      "inference": "normative-constructive",
+      "warrant": {
+        "text": "Dari perbedaan definisi dan justifikasi serta tuntutan alasan bagi pembatasan hak, otorisasi formal saja belum menyelesaikan kebutuhan justifikasi.",
+        "status": "proposed",
+        "normative_bridge": true
+      },
+      "scope": {
+        "concept": "kepentingan umum",
+        "time": "abstrak"
+      },
+      "quotes": []
+    }
+  ],
+  "chapters": [
+    {
+      "id": "CH1",
+      "title": "Konstruksi perbedaan definisi dan justifikasi",
+      "claim_ids": [
+        "P1",
+        "P2"
+      ],
+      "argumentative_task": "Menyediakan pembedaan konseptual dan premis normatif"
+    },
+    {
+      "id": "CH2",
+      "title": "Tesis kritis mengenai justifikasi",
+      "claim_ids": [
+        "C1"
+      ],
+      "argumentative_task": "Membangun dan menguji tesis pusat"
+    }
+  ],
+  "objections": [
+    {
+      "id": "O1",
+      "target_id": "C1",
+      "severity": "major",
+      "status": "open",
+      "text": "Bagaimana jika legitimasi substantif sudah dipertimbangkan ketika aturan pembatasan disahkan?",
+      "proposed_reply": "Argumen dapat dibatasi pada ketidakcukupan label semata, bukan menolak kemungkinan justifikasi substantif."
+    }
+  ],
+  "readiness": {
+    "internal_review": "pending",
+    "dialectical_review": "pending",
+    "integration_review": "pending",
+    "defense_review": "pending",
+    "researcher_approved": false
+  }
+}

@@ -1,0 +1,21 @@
+profile_id: example-university
+status: unverified-example-only
+institution: null
+faculty: null
+program: doctoral-law
+source:
+  title: null
+  official_url: null
+  document_date: null
+  checked_on: null
+requirements:
+  proposal_structure: []
+  dissertation_structure: []
+  doctoral_milestones: []
+  language: null
+  citation_style: null
+  page_layout: {}
+  submission_formats: []
+constraints:
+  never_override_source_integrity: true
+  never_override_methodological_warrant: true
