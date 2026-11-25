@@ -1,14 +1,14 @@
 ---
 name: doctrina
 metadata:
-  version: "0.4.1-original-source-grounding"
+  version: "0.4.2-author-fidelity-p1"
 description: >-
   Argument-first review of ongoing doctoral normative-conceptual law dissertations
   whose primary research object is a LEGAL NORM or LEGAL CONCEPT, never a theory.
   Test internal warrants in live drafts; final originality evaluation comes last.
 ---
 
-# DOCTRINA v0.4.1 — Norm / Concept Dissertation Reasoning Core with Source Grounding
+# DOCTRINA v0.4.2 — Source-Grounded, Author-Faithful Norm / Concept Dissertation Review
 
 ## Mission
 Help the researcher build and defend the **central argument about a legal norm or legal concept** of an ongoing normative-conceptual doctoral dissertation. The dissertation is an evolving argument, not a generic academic paper.
@@ -62,6 +62,29 @@ Interpret results strictly:
 - `UNVERIFIED`: original source unavailable, wrong hash/page/quote, or extraction failed.
 
 Printed page and metadata for legal force, jurisdiction and edition **remain separate human/source tasks**. Never promote `PARTIAL` to inspected; do not classify a cited claim as false just because the PDF is not extractable. Read `../../docs/RFC-011-SOURCE-GROUNDING.md`. The public reference pins for an **actual Edinburgh dissertation and Court of Appeal judgment** are at `../../sources/public-originals-pinned.json`; their original PDFs remain off-repository.
+
+## v0.4.2 / P1 — Author-Faithful Reconstruction is mandatory for a new LIVE manuscript
+
+**P1 is a fundamental gate, not optional decoration.** Existing legacy v0.3/v0.4 fixtures may still execute as *structural-only* examples, but MUST NOT be described as having passed author-fidelity verification.
+
+**Two-pass protocol:** first reconstruct *what the author actually commits to*, with direct source quotation and distinct voice classification; only after researcher confirmation do you criticize the argument. NEVER silently turn:
+- an opponent's position or a cited quotation into the author's adopted thesis;
+- a question into a positive assertion;
+- a conditional statement into an unconditional conclusion;
+- an AI-proposed hidden premise into an explicit author premise;
+- a structurally connected graph into a verdict that its legal inference is substantively sound.
+
+**Original-draft and approval constraints:** Read \`modules/02-argument-reconstruction.md\`, \`templates/draft-reconstruction-protocol.md\`, and \`../../docs/RFC-012-AUTHOR-FAITHFUL-RECONSTRUCTION.md\`. The CLI uses **independent, byte-preserving UTF-8 original files** and exact paragraph spans. A declared \`author_explicit\` or \`researcher_approved\` field is insufficient for P1; only a live, source-bound, self-attested researcher decision can promote the reconstructed record. Its identity is **not independently authenticated**. Do not invent, auto-generate, replay, or impersonate such human confirmation.
+
+To exercise the **fully synthetic** no-approval workflow from the repository root:
+
+    python scripts/demo_fidelity.py --out /tmp/doctrina-p1-demo.json
+    python scripts/fidelity_cli.py check --case /tmp/doctrina-p1-demo.json --draft examples/fidelity_draft_synthetic.txt --format markdown
+    python scripts/doctrina_cli.py check /tmp/doctrina-p1-demo.json --original-draft examples/fidelity_draft_synthetic.txt
+
+For actual authorized writing, use \`fidelity_cli.py start\` (against a fresh local draft case), \`propose\` (exact quote, voice, mode, contextual passage IDs, linked premises), \`check\`, then **researcher-only interactive** \`decide\`, with \`sync\` after revisions. Do NOT run approval commands on behalf of the author. If the original draft is missing, hash/quote/context mismatches, or a premise/reviewed proposition changes, **block or invalidate** approval. A real authorized draft and case/review files should never be committed to public GitHub.
+
+**Downstream audit gating:** When \`reconstruction\` is present, \`scripts/doctrina_core.py\` and \`scripts/doctrina_cli.py\` check the P1 block; \`--original-draft\` is required for verified status. AI voice classifications and human approvals are bounded claims about the recorded text, not proof that a legal assertion or philosophical interpretation is correct. \`normative / interpretative / conceptual\` novelty remains LAST.
 
 ## v0.4 — Local-first, source-anchored research workflow
 
