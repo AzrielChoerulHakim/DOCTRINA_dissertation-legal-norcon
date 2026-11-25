@@ -387,10 +387,10 @@ def add_decision(case: dict, original_text: str, rid: str, reviewer_label: str,
         raise ValueError("No such claim")
     # A stale previous decision is expected during legitimate revision: a NEW
     # explicit decision supersedes it. Never override source/hash/span errors.
+    # Fail closed for ANY source integrity, graph attribution, or record
+    # corruption across the case; stale *previous* decisions may be superseded.
     fatal = [f for f in review["findings"]
-             if f["level"] == "critical"
-             and f["target"] in {rid, "draft", "draft.sha256"}
-             and f["code"] not in {"APPROVAL_STALE"}]
+             if f["level"] == "critical" and f["code"] != "APPROVAL_STALE"]
     if fatal:
         raise ValueError("Source/record is invalid; cannot record approval")
     fingerprints, cycles, missing = _fingerprints(rid_map, case["reconstruction"]["draft_sha256"])
