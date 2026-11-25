@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""DOCTRINA v0.4 local-only command line: init, migrate, check, report."""
+"""DOCTRINA v0.4.1 local-only command line: init, migrate, check, report, verify-sources."""
 from __future__ import annotations
 import argparse
 import json
@@ -42,6 +42,10 @@ def options() -> argparse.ArgumentParser:
     report = subs.add_parser("report", help="Anchored Markdown argument review, no inferred truth claims")
     report.add_argument("case", help="v0.4 JSON case")
     report.add_argument("--out", help="Save Markdown report to a local path")
+    source_check = subs.add_parser("verify-sources", help="Verify original local PDF/text SHA-256, page and excerpt")
+    source_check.add_argument("--manifest", required=True, help="Pinned original-source JSON manifest")
+    source_check.add_argument("--source-root", required=True, help="Directory containing authorized original sources")
+    source_check.add_argument("--out", help="Save JSON integrity report")
     return parser
 
 
@@ -64,6 +68,17 @@ def main(argv=None) -> int:
             write_content(args.out, json.dumps(data, ensure_ascii=False, indent=2)+"\n")
             print(f"Migrated {args.out}; historical claims need new original-draft anchors")
             return 0
+        if args.command == "verify-sources":
+            from verify_sources import verify_manifest
+            manifest = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
+            result = verify_manifest(manifest, Path(args.source_root))
+            output = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
+            if args.out:
+                write_content(args.out, output)
+                print(f"Wrote {args.out} (source states: {result['counts']})")
+            else:
+                print(output, end="")
+            return 2 if result["counts"]["UNVERIFIED"] else 0
         data = read_case(args.case)
         if args.command == "check":
             result = review(data)
