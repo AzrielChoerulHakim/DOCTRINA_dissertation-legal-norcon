@@ -1,65 +1,74 @@
-# DOCTRINA — Conceptual Dissertation Research Charter
+# DOCTRINA — Research Charter for an Ongoing Dissertation on NORMA / KONSEP
 
-**Status:** working template for an ongoing normative–conceptual law dissertation. Not an institutional dissertation format.
+**Scope:** normative-conceptual legal doctoral dissertation examining a **legal norm** or a **legal concept**. This is not an institutional chapter template, a theory-testing framework, or a novelty certification form.
 
-## 1. Target and problem
-- Dissertation / researcher-approved title:
-- Inspected text: chapter/subchapter/paragraph and exact locator:
-- Jurisdiction/time (if positive law is claimed):
-- Current research question **in the author's words**:
-- Provisional central thesis: author assertion / faithful paraphrase / unapproved AI reconstruction:
-- Contested **concept**:
-- Rival **conceptions**, with inspected source/locator:
-- Form of problem: conceptual boundary / contradiction / norm conflict / interpretive puzzle / justification deficit / critical-genealogical problem / other:
-- What would show that this is a genuine doctoral problem, not merely terminological ambiguity?
-- Scope exclusions and methodological limits:
+## 1. Identify permitted research object
 
-## 2. Select a primary inquiry aim and justify the choice
-- [ ] Conceptual clarification
-- [ ] Doctrinal articulation under identified sources
-- [ ] Ontological/explanatory jurisprudence
-- [ ] Interpretive–constructive justification
-- [ ] Immanent or genealogical/deconstructive critique
-- [ ] External normative evaluation
-- [ ] Normative-conceptual reconstruction
+- Project and researcher-approved title:
+- **Primary research object:** NORMA / KONSEP (choose exactly one):
+- Secondary object, if needed: NORMA / KONSEP:
+- Exact norm identifier and authoritative source / exact legal concept and located usages:
+- Jurisdiction and effective date/timeframe, where applicable:
+- Actual chapter/section/paragraph being assessed, with precise locator:
+- Researcher's current question, verbatim:
+- Researcher's provisional thesis, verbatim or explicitly marked reconstruction:
+- What makes this norm/concept problematic, rather than merely interesting?:
+- Scope exclusions, materials not inspected, and unknown facts:
 
-Other aims, if any, and an **explicit warrant for changing levels**:
-- Why does this method answer the question?
-- Under what conditions would its own argument fail?
-- What may it *not* establish (e.g., causal effects of a law)?
+## 2A. NORMA route (complete only if applicable)
 
-## 3. Theory-role and source register
-| Theorist/source | Actual inspected proposition and locator | Object / explanatory lens / normative warrant / rival / method | Researcher endorses? | Tension |
+- Text and version of norm, verified source:
+- Norm hierarchy / institution / authority:
+- Rights, duties, prohibitions, powers, permissions or conditions affected:
+- Relevant exceptions, conflicts, competing legal readings:
+- Main normative problem (ambiguity, inconsistency, unjustified consequence, interpretive disagreement):
+- What legal criteria and sources are used to assess the author's interpretation?:
+- What is a defensible alternative interpretation or counterexample?:
+
+## 2B. KONSEP route (complete only if applicable)
+
+- Legal concept and source usages:
+- Particular definitions and competing conceptions:
+- Definitional boundaries, ambiguous cases, necessary/sufficient conditions (if argued):
+- Conceptual tension or internal inconsistency:
+- What legal consequences are claimed to follow, and what justifies this transition?:
+- What counterexample, boundary case or competing reading would matter?:
+
+## 3. Method, supporting materials and limited theory roles
+
+- Actual normative/doctrinal/conceptual/interpretive/critical approach used:
+- Why this approach can answer the selected **norm/concept** problem:
+- Limits: which positive-law or empirical propositions cannot be established:
+- Theory, if used, is only an **analytical/interpretive instrument**, not the object of the dissertation:
+
+| Theorist or source | Specific inspected proposition and locator | Narrow analytical role for norm/concept | Researcher adopts this proposition? | Limits and tensions |
 |---|---|---|---|---|
 | | | | | |
 
-**Do not attribute an opponent's view to the researcher.**
+## 4. Argument reconstruction and internal test
 
-## 4. Claim ledger in the selected passage
-| Claim ID | Verbatim text and location | SEM/CON/ONT/DOC/INT/NOR/CRI/EMP | Premises | Warrant: explicit or proposed | Source inspection status |
-|---|---|---|---|---|---|
-| | | | | | |
+| Claim ID | Verbatim author statement and locator | Claim kind | Premises | Actual vs proposed warrant | Sources checked | Objection |
+|---|---|---|---|---|---|---|
+| | | | | | | |
 
-Review the transitions:
-- Legal definition → substantive legitimacy: justified?
-- Legitimacy → legal validity: relevant criterion and legal system stated?
-- Ontological/conceptual result → normative remedy: defended?
-- One legal source → universal jurisprudential claim: scope justified?
-- Genealogical origins → present normative invalidity: independent warrant?
+Mandatory transitions to inspect:
+- Legal definition → substantive legitimacy
+- Substantive legitimacy → legal validity
+- Conceptual clarification → normative obligation/remedy
+- One statute or judgment → purportedly universal rule
+- Historical genesis → current legal invalidity
 
-## 5. Dissertation argument spine
-| Chapter | What must the reader be justified in accepting? | Prior dependencies | Strongest unresolved objection | Downstream chapters |
+For each flagged move: identify its exact author-text anchor, why the inference may fail, the author's strongest possible reply and the **smallest possible** defensible amendment.
+
+## 5. Whole-dissertation thesis spine
+
+| Chapter/section | What the reader must now be justified in accepting | Depends on | Strongest open objection | Affected downstream chapters |
 |---|---|---|---|---|
 | | | | | |
 
-## 6. Internal audit and researcher's decision
-- Strongest **immanent** objection and exact text anchor:
-- Strongest **dialectical** rival and verified source:
-- Reconstructed implicit premise (marked proposed, not author-endorsed):
-- Smallest defensible clarification / qualification:
-- More radical reconceptualization (only if researcher opts in):
-- Author's decision: approved / rejected / unresolved
-- Impact on arguments and chapters:
-- Next review task:
+- Definition or norm changed in this draft:
+- Dependent claims that require re-review:
+- Researcher decision: accept / reject / revise / unresolved:
+- Date/version, reviewer, source limitations:
 
-**Final originality audit: LOCKED.** Literature and doctrine are examined throughout the dissertation; only the formal assessment of originality is withheld until the thesis has passed internal, dialectical, integration and defense review.
+**Final originality evaluation: LOCKED** until internal, dialectical, whole-dissertation integration and defense reviews are provisionally complete and researcher approval is recorded. Prior scholarship is still consulted throughout drafting.
