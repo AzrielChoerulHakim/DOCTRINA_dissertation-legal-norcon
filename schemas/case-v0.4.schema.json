@@ -1,0 +1,296 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AzrielChoerulHakim/DOCTRINA_dissertation-legal-norcon/blob/main/schemas/case-v0.4.schema.json",
+  "title": "DOCTRINA v0.4 Norm/Concept Dissertation Case",
+  "description": "Structural contract; evidence inspection and interpretive soundness require human review.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "research_object",
+    "draft",
+    "central_claim_id",
+    "claims",
+    "chapters",
+    "sources",
+    "objections",
+    "readiness",
+    "originality"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.4.0"
+    },
+    "research_object": {
+      "type": "object",
+      "required": [
+        "primary_type",
+        "title",
+        "exact_locus",
+        "jurisdiction",
+        "temporal_scope",
+        "legal_materials",
+        "concept_usages"
+      ],
+      "properties": {
+        "primary_type": {
+          "enum": [
+            "norm",
+            "concept"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exact_locus": {
+          "type": "string"
+        },
+        "jurisdiction": {
+          "type": "string"
+        },
+        "temporal_scope": {
+          "type": "string"
+        },
+        "source_state": {
+          "enum": [
+            "inspected",
+            "partial",
+            "metadata_only",
+            "unverified"
+          ]
+        },
+        "legal_materials": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "locator": {
+                "type": "string"
+              },
+              "inspection_status": {
+                "enum": [
+                  "inspected",
+                  "partial",
+                  "metadata_only",
+                  "unverified"
+                ]
+              }
+            }
+          }
+        },
+        "concept_usages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "usage": {
+                "type": "string"
+              },
+              "locator": {
+                "type": "string"
+              },
+              "inspection_status": {
+                "enum": [
+                  "inspected",
+                  "partial",
+                  "metadata_only",
+                  "unverified"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "draft": {
+      "type": "object",
+      "required": [
+        "filename",
+        "sha256",
+        "passages"
+      ],
+      "properties": {
+        "filename": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "confidentiality": {
+          "const": "local_only"
+        },
+        "passages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/passage"
+          }
+        }
+      }
+    },
+    "central_claim_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/claim"
+      }
+    },
+    "chapters": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "objections": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "readiness": {
+      "type": "object",
+      "properties": {
+        "researcher_approved": {
+          "type": "boolean"
+        }
+      }
+    },
+    "originality": {
+      "type": "object",
+      "required": [
+        "stage"
+      ],
+      "properties": {
+        "stage": {
+          "const": "locked"
+        },
+        "final_status": {
+          "enum": [
+            "NOT_READY"
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "passage": {
+      "type": "object",
+      "required": [
+        "id",
+        "verbatim",
+        "start_offset",
+        "end_offset",
+        "start_line",
+        "end_line"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verbatim": {
+          "type": "string"
+        },
+        "start_offset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "end_offset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "start_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "end_line": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "required": [
+        "id",
+        "text",
+        "kind",
+        "role",
+        "premises"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "descriptive",
+            "conceptual",
+            "doctrinal",
+            "interpretive",
+            "normative",
+            "empirical",
+            "critical",
+            "ontological"
+          ]
+        },
+        "role": {
+          "enum": [
+            "derived",
+            "premise"
+          ]
+        },
+        "premises": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "attribution": {
+          "enum": [
+            "author",
+            "opponent",
+            "quoted_source",
+            "proposed"
+          ]
+        },
+        "provenance": {
+          "enum": [
+            "author_explicit",
+            "researcher_approved",
+            "ai_proposed",
+            "legacy_unverified"
+          ]
+        },
+        "passage_id": {
+          "type": "string"
+        },
+        "anchor_text": {
+          "type": "string"
+        },
+        "warrant": {
+          "type": "object"
+        },
+        "inference": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

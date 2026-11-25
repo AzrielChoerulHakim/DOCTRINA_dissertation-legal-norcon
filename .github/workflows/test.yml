@@ -1,0 +1,22 @@
+name: DOCTRINA regression tests
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run v0.3 and v0.4 regression suites
+        run: python -m unittest discover -s tests -v
+      - name: Smoke test local-only draft intake
+        run: |
+          python scripts/doctrina_cli.py init --input examples/dissertation-draft-synthetic.txt --object concept --title "Kepentingan umum" --locus "simulasi" --out /tmp/doctrina-case.json
+          python scripts/doctrina_cli.py check /tmp/doctrina-case.json --out /tmp/doctrina-audit.json
+          python scripts/doctrina_cli.py report /tmp/doctrina-case.json --out /tmp/doctrina-review.md

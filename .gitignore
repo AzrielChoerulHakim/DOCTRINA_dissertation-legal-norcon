@@ -1,0 +1,12 @@
+# Keep real, unpublished dissertation drafts out of this public repository
+/private/
+/working/
+/local/
+/output/
+*.local.json
+*.private.txt
+*.private.md
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
