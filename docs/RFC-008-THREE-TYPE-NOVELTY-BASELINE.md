@@ -18,6 +18,18 @@ Exactly three contribution types are recognized for the **final originality audi
 
 An approved dissertation selects **exactly one primary type** for the contribution it eventually claims. A secondary type is permitted only if independently justified. An object classified as \`norm\` may yield an interpretative or conceptual contribution; an object classified as \`concept\` may yield a normative or interpretative contribution. Do not conflate research-object type and novelty type.
 
+## 1.1 Primary-type disambiguation in overlapping cases
+
+The same dissertation may generate several legally relevant results, but the **primary type** is determined by what the main defended contribution **changes**, not by whether the legal research object began as a statute or an abstract concept.
+
+- It principally **specifies what rule, normative criterion or arrangement ought to govern** → \`normative\`.
+- It principally **justifies how an existing norm or legal concept should be read in context**, compared with earlier readings → \`interpretative\`.
+- It principally **clarifies or reconstructs what a legal concept means, comprises or excludes** → \`conceptual\`.
+
+**Overlap example:** A newly clarified conception of public interest (\`conceptual\`) may support a better reading of a land-acquisition provision (\`interpretative\`), which may in turn justify a procedural reform (\`normative\`). The primary class follows the **central thesis actually defended** in the dissertation; the others remain optional and unasserted unless independently defended. This is not a required order or pipeline.
+
+**Anti-gaming condition:** Do not relabel an unsupported normative proposal as conceptual novelty simply to make a novelty gate appear to pass. If two reviewers disagree on the primary type, preserve the disagreement and record the criterion used.
+
 ## 2. Contribution chain: what has to be proven
 
 For each **proposed** contribution, the reviewer must be able to trace:
