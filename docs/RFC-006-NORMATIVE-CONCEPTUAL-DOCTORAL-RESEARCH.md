@@ -4,6 +4,7 @@
 **Date:** 25 November 2026  
 **Status:** methodological research proposal — **not implemented**, **not validated**  
 **Baseline:** DOCTRINA v0.3, RFC-005  
+**Scope notice (later decision):** RFC-007 restricts supported dissertation research objects to a **legal norm or legal concept**. All broader theory-as-object discussions in this historical methodological RFC are superseded; theory is a supporting instrument only.  
 **Scope:** an *ongoing doctoral dissertation in normative legal research using conceptual inquiry*. Not a generic article writing assistant, generic RAG platform, or claim to determine doctoral eligibility.
 
 > **Core thesis of this RFC:** DOCTRINA should evaluate the *inferential fitness of an author's developing thesis* against its chosen jurisprudential inquiry. It must not use a single doctrinal, positivist, moral-philosophical, or purely deductive standard for every dissertation. The final originality assessment remains the last review stage; this does not postpone reading prior work.
