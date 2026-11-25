@@ -45,7 +45,7 @@ def nonempty(value: Any) -> bool:
 def split_passages(text: str) -> list[dict]:
     """Paragraph candidate segmentation: exact source substrings and Unicode offsets."""
     passages = []
-    for m in re.finditer(r"\S[\s\S]*?(?=\n[ \t]*\n|\Z)", text):
+    for m in re.finditer(r"\S[\s\S]*?(?=\r?\n[ \t]*\r?\n|\Z)", text):
         start, end = m.span()
         while end > start and text[end-1].isspace():
             end -= 1
