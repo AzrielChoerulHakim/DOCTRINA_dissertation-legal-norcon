@@ -1,14 +1,14 @@
 ---
 name: doctrina
 metadata:
-  version: "0.4.0-norm-concept-core"
+  version: "0.4.1-original-source-grounding"
 description: >-
   Argument-first review of ongoing doctoral normative-conceptual law dissertations
   whose primary research object is a LEGAL NORM or LEGAL CONCEPT, never a theory.
   Test internal warrants in live drafts; final originality evaluation comes last.
 ---
 
-# DOCTRINA v0.4 — Norm / Concept Dissertation Reasoning Core
+# DOCTRINA v0.4.1 — Norm / Concept Dissertation Reasoning Core with Source Grounding
 
 ## Mission
 Help the researcher build and defend the **central argument about a legal norm or legal concept** of an ongoing normative-conceptual doctoral dissertation. The dissertation is an evolving argument, not a generic academic paper.
@@ -26,6 +26,7 @@ Help the researcher build and defend the **central argument about a legal norm o
 - Treat propositions, concepts, conceptions, norms, doctrines, theoretical descriptions, value judgments and conclusions distinctly. Keep temporal and jurisdictional scope visible for positive law.
 - Do not quietly replace a critical/deconstructive research goal with a prescriptive law-reform goal. Do not force all research into deductive logic.
 - Never invent quotations, legal rules, pages, sources, research gaps, originality or factual evidence. Mark unknown/inaccessible material explicitly.
+- **Source-grounding rule (v0.4.1):** no "directly inspected" status for a decisive excerpt merely because a passage matches an AI-authored excerpt fixture. Obtain the actual original PDF/text file, verify its previously pinned SHA-256 and page-specific source excerpt, and disclose missing or partially inspected sources. A source match does NOT establish that a legal rule is in force or that a disputed interpretation follows.
 - The researcher owns thesis changes, theoretical commitments, accepted responses and chapter approvals; the skill proposes, tests and records.
 
 ## Engagement protocol
@@ -46,6 +47,21 @@ Help the researcher build and defend the **central argument about a legal norm o
 7. `modules/07-final-originality-audit.md`: **last step only**, proposition-level comparison under the three contribution types; use `templates/final-novelty-matrix.md`.
 
 Consult `references/argument-taxonomy.md` for fault categories and methodological exceptions; `references/epistemic-boundaries.md` for evidentiary statuses and confidence limits. Source locators and direct inspected texts must be retained in audit artifacts.
+
+## v0.4.1 — Original-source verification (before any consequential legal critique)
+
+With permission to access original source files, store them in a local/private directory, not this public repository. **Do not automatically download confidential files.** Prepare a source manifest using `../../schemas/sources-v1.schema.json` and **previously pinned** source SHA-256 / declared PDF page index. Run from the repo root:
+
+    python -m pip install 'pypdf>=4,<8'
+    python scripts/doctrina_cli.py verify-sources --manifest private-manifest.json --source-root private-originals --out source-integrity.local.json
+
+Interpret results strictly:
+- `VERIFIED_EXACT`: original bytes match the pinned SHA-256 and excerpt occurs verbatim on declared PDF page.
+- `VERIFIED_NORMALIZED`: same but conservative whitespace/Unicode normalization was required; not a verbatim glyph check.
+- `PARTIAL`: source/page/hash is insufficiently verified or PDF lacks searchable text.
+- `UNVERIFIED`: original source unavailable, wrong hash/page/quote, or extraction failed.
+
+Printed page and metadata for legal force, jurisdiction and edition **remain separate human/source tasks**. Never promote `PARTIAL` to inspected; do not classify a cited claim as false just because the PDF is not extractable. Read `../../docs/RFC-011-SOURCE-GROUNDING.md`. The public reference pins for an **actual Edinburgh dissertation and Court of Appeal judgment** are at `../../sources/public-originals-pinned.json`; their original PDFs remain off-repository.
 
 ## v0.4 — Local-first, source-anchored research workflow
 
