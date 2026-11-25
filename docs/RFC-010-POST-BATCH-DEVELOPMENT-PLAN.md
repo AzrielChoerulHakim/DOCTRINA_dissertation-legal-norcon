@@ -7,7 +7,9 @@
 ## Implementation progress — 25 November 2026
 
 - **P0 / v0.4.1 original-source grounding: IMPLEMENTED and mechanically validated.** Source manifest, local PDF/text verifier, SHA-256/page-specific excerpt checks, 20 negative/positive verifier tests, and 2 CLI tests were added. Two independently pinned *real* original PDF sources (one university dissertation, one official court judgment) passed verification on a fresh retrieval. Detailed evidence: [RFC-011](RFC-011-SOURCE-GROUNDING.md).
-- **P1–P5: NOT YET IMPLEMENTED/VALIDATED** as substantive release features. The next approved engineering dependency is P1, author-faithful argument reconstruction.
+- **P1 / v0.4.2 Author-Faithful Reconstruction: IMPLEMENTED as a strict mechanical source-bound and researcher-decision layer.** The independent original draft, character spans, quoted voice, modal qualifications, premise dependencies and version-specific approvals are checked; author approval requires interactive local self-attestation. Integrated P1 checks are fail-closed when original text is absent. See [RFC-012](RFC-012-AUTHOR-FAITHFUL-RECONSTRUCTION.md).
+- **P1 academic validation STILL PENDING:** No real dissertation author/independent academic reviewer has measured whether the AI-proposed paraphrases are semantically faithful. Local self-attestation is not identity authentication or doctoral examiner approval.
+- **P2–P5: NOT YET IMPLEMENTED/VALIDATED** as substantive release features. Next engineering dependency is P2, norm/concept inferential justification, grounded in the confirmed P1 record.
 - Results remain restricted to source **text integrity** and structural compatibility; the 77 unit tests are *not* a measurement of doctoral-quality reasoning or novelty correctness.
 
 ## 1. Decision and evidence limitations
