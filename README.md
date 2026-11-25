@@ -1,6 +1,6 @@
-# DOCTRINA v0.4.1 — Norm / Concept Dissertation Reasoning + Original-Source Grounding
+# DOCTRINA v0.4.2 — Norm / Concept Dissertation Review with Author-Faithful Reconstruction
 
-**Status:** local-first norm/concept structural argument review plus v0.4.1 offline original-source SHA-256/page/excerpt verification. Backward-compatible with v0.3 graph lint. **Not autonomous legal-validity, semantic inference, or doctoral novelty certification.**
+**Status:** local-first norm/concept structural audit + v0.4.1 original-source verification + **P1 version-bound authorial reconstruction and human-only interactive self-attestation**. Backward-compatible with legacy v0.3 structural lint. **Not independent semantic accuracy, verified researcher identity, legal validity, or doctoral novelty certification.**
 
 **CURRENT RESEARCH OBJECT SCOPE: ONLY NORMA or KONSEP.** The dissertation must identify a specific legal norm or a specific legal concept as the primary research object. Theories may support interpretation but are **not** research objects, targets for proof/falsification, or required original outputs. See [RFC-007: Norm / Concept Scope Freeze](docs/RFC-007-NORM-CONCEPT-SCOPE.md).
 
@@ -43,6 +43,32 @@ The CLI intake is intentionally incomplete until a real claim reconstruction is 
 - [Data schema v0.4](schemas/case-v0.4.schema.json)
 - [Implementation and limitations — RFC-009](docs/RFC-009-REASONING-CORE-IMPLEMENTATION.md)
 - [New v0.4 tests](tests/test_doctrina_core.py) and [GitHub Actions workflow](.github/workflows/test.yml)
+
+## v0.4.2 — Fundamental Author-Faithful Reconstruction (P1)
+
+The original manuscript, not an AI-generated graph, controls the scope of the author's claim. P1 now tracks exact UTF-8 draft bytes, Unicode spans, voice (author / opponent / quoted / hypothetical / uncertain), assertion mode (explicit / paraphrase / inferred / question / conditional), surrounding context, and load-bearing premise dependencies. **No proposal becomes author-approved by editing a JSON field.** A local reviewer must explicitly approve/reject/revise an individual versioned proposal; interactive TTY is required and decisions become stale after a source, claim or premise revision. This is self-attested, not a digital signature or independent proof of interpretive fidelity.
+
+Run a reproducible three-proposition synthetic case with zero implicit approvals:
+
+\`\`\`bash
+python scripts/demo_fidelity.py --out /tmp/doctrina-p1-demo.json
+python scripts/fidelity_cli.py check \
+  --case /tmp/doctrina-p1-demo.json \
+  --draft examples/fidelity_draft_synthetic.txt \
+  --format markdown --out /tmp/doctrina-p1-review.md
+python scripts/doctrina_cli.py check /tmp/doctrina-p1-demo.json \
+  --original-draft examples/fidelity_draft_synthetic.txt
+\`\`\`
+
+- [Author-fidelity specification and scope boundaries](docs/RFC-012-AUTHOR-FAITHFUL-RECONSTRUCTION.md)
+- [P1 two-pass argument reconstruction protocol](skills/doctrina/templates/draft-reconstruction-protocol.md)
+- [Fidelity model, dependency fingerprints and approval gates](scripts/doctrina_fidelity.py)
+- [Researcher-local interactive fidelity CLI](scripts/fidelity_cli.py)
+- [P1 JSON schema](schemas/reconstruction-v1.schema.json)
+- [Synthetic case generator](scripts/demo_fidelity.py) and [source](examples/fidelity_draft_synthetic.txt)
+- [P1 test suite](tests/test_fidelity_p1.py) and [core integration tests](tests/test_fidelity_core_integration.py)
+
+**Important:** the checker validates exact text and structurally recorded assent, not the substantive fairness of a paraphrase. The P1 human decision is self-attested; independent double-review and semantic metrics are **still needed**. New actual manuscript reviews must pass P1 before substantive argument diagnosis. The earlier seven published doctoral pilots have not retrospectively become author-approved.
 
 ## v0.4.1 — Verify original PDF/text sources before relying on decisive quotations
 
