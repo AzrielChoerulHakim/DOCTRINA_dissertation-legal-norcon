@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AzrielChoerulHakim/DOCTRINA_dissertation-legal-norcon/blob/main/schemas/reconstruction-v1.schema.json",
+  "title": "DOCTRINA P1 — Author-Faithful Reconstruction Ledger",
+  "description": "Versioned source-bound reviewer proposals and local self-attested approvals; not a semantic or identity-verification certificate.",
+  "type": "object",
+  "required": [
+    "protocol",
+    "draft_sha256",
+    "records",
+    "decisions",
+    "status"
+  ],
+  "properties": {
+    "protocol": {
+      "const": "1.0"
+    },
+    "draft_sha256": {
+      "$ref": "#/$defs/hash"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "researcher_confirmation_required",
+        "recheck_required_after_revision"
+      ]
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/record"
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/decision"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "span": {
+      "type": "object",
+      "required": [
+        "start",
+        "end",
+        "quote"
+      ],
+      "properties": {
+        "start": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "quote": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "record": {
+      "type": "object",
+      "required": [
+        "id",
+        "passage_id",
+        "span",
+        "voice",
+        "mode",
+        "proposition",
+        "voice_basis",
+        "context_passage_ids",
+        "premise_ids"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "passage_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "voice": {
+          "enum": [
+            "author",
+            "opponent",
+            "quoted_source",
+            "hypothetical",
+            "uncertain"
+          ]
+        },
+        "mode": {
+          "enum": [
+            "explicit",
+            "paraphrase",
+            "inferred",
+            "question",
+            "conditional"
+          ]
+        },
+        "proposition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "voice_basis": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Reasons for attribution; does not independently authenticate speaking voice"
+        },
+        "context_passage_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "premise_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "proposed_by": {
+          "type": "string",
+          "description": "Provisional proposal source, never self-approval"
+        }
+      },
+      "additionalProperties": true
+    },
+    "decision": {
+      "type": "object",
+      "required": [
+        "claim_id",
+        "decision",
+        "reason",
+        "reviewer_label",
+        "attestation",
+        "timestamp_utc",
+        "fingerprint",
+        "draft_sha256"
+      ],
+      "properties": {
+        "claim_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision": {
+          "enum": [
+            "accept",
+            "reject",
+            "revise"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewer_label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attestation": {
+          "const": "interactive_self_attested"
+        },
+        "timestamp_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "fingerprint": {
+          "$ref": "#/$defs/hash"
+        },
+        "draft_sha256": {
+          "$ref": "#/$defs/hash"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
