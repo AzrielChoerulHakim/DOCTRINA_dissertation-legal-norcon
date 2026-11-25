@@ -1,4 +1,4 @@
-# DOCTRINA — Norm / Concept Dissertation Argumentation (v0.3.1 Scope)
+# DOCTRINA — Norm / Concept Dissertation Argumentation (v0.3.2 Design)
 
 **Status:** functional design prototype + executable structural argument lint; not a certified doctoral examiner or a full legal reasoner.
 
@@ -11,12 +11,15 @@
 - **NORMA:** text/source, applicability, hierarchy, interpretation, exceptions, coherence and normative consequences of an identifiable legal rule or principle.
 - **KONSEP:** meaning, competing definitions/conceptions, boundary cases, internal coherence and implications of an identifiable legal concept.
 - **Central process:** reconstruct the author's claims about the norm/concept, challenge their internal warrants and cross-chapter dependencies, then evaluate the strongest alternative interpretation. **Originality is assessed last.**
+- **Three final originality types only:** `normative`, `interpretative`, and `conceptual`. One primary contribution type is chosen from demonstrated findings; a secondary type is optional. A distinct title or rewording does not prove novelty.
 - **Theory:** a supporting tool only. DOCTRINA does not evaluate whole theories as doctoral research objects or demand the creation of a general legal theory.
 
 ## Start here
 
 - `skills/doctrina/SKILL.md` — human/agent workflow router.
 - `docs/RFC-005-ARGUMENT-FIRST-DOCTORAL-REVIEW.md` — specification and audit methodology.
+- [RFC-008: Three-Type Novelty Baseline](docs/RFC-008-THREE-TYPE-NOVELTY-BASELINE.md) — final-gate contribution contract.
+- [`final-novelty-matrix.md`](skills/doctrina/templates/final-novelty-matrix.md) — proposition-level final comparison (not for early certification).
 - `skills/doctrina/modules/` — seven focused stage instructions.
 - `skills/doctrina/templates/` — review card, ledger, decision-log templates.
 - `examples/kepentingan-umum-illustrative.json` — **synthetic** argument graph; not an assertion of Indonesian positive law.
@@ -47,4 +50,4 @@ Initial repository import from **DOCTRINA v0.3 — Internal Argumentation Engine
 - **CURRENT SCOPE:** [RFC-007 — NORMA / KONSEP Only](docs/RFC-007-NORM-CONCEPT-SCOPE.md) supersedes any broader historical examples involving theories as research objects.
 - [RFC-006 — Normative–Conceptual Doctoral Research](docs/RFC-006-NORMATIVE-CONCEPTUAL-DOCTORAL-RESEARCH.md) distinguishes doctrinal, conceptual, interpretive, ontological, critical and normative claims, and proposes five high-risk transitions to audit.
 - [Conceptual Research Charter](skills/doctrina/templates/conceptual-research-charter.md) provides a live-draft worksheet for the author's actual research problem, methodology, theory roles, argument scope, chapter spine and human revision decisions.
-- **Release status:** `SKILL.md` now declares the NORMA/KONSEP-only scope (v0.3.1 instructions). The Python linter and its 18 previously documented mechanical tests remain v0.3 and **do not yet enforce research-object typing**. RFC-006 and RFC-007 contain research/design rules; implementing a schema migration, expert review and regression tests remains future work. No semantic doctoral-reasoning capability has been certified.
+- **Release status:** `SKILL.md` now declares the NORMA/KONSEP-only scope and three final novelty classes (v0.3.2 design instructions). The Python linter and its 18 previously documented mechanical tests remain v0.3 and **do not enforce research-object typing or classify novelty**. RFC-006/007/008 are research/design rules; schema migration, semantic evaluation, human review and regression tests remain future work. No substantive doctoral examiner or novelty-certification capability has been validated.
