@@ -4,6 +4,12 @@
 **Evidence:** [PILOT-BATCH-P003-P009-RESULTS.md](PILOT-BATCH-P003-P009-RESULTS.md), [P003–P009 data](../examples/dissertation_batch_003_009.json), [test suite](../tests/test_pilot_batch_003_009.py)  
 **Prior baselines:** [RFC-007, NORMA/KONSEP objects](RFC-007-NORM-CONCEPT-SCOPE.md), [RFC-008, three novelty types](RFC-008-THREE-TYPE-NOVELTY-BASELINE.md), [RFC-009, v0.4 core](RFC-009-REASONING-CORE-IMPLEMENTATION.md)
 
+## Implementation progress — 25 November 2026
+
+- **P0 / v0.4.1 original-source grounding: IMPLEMENTED and mechanically validated.** Source manifest, local PDF/text verifier, SHA-256/page-specific excerpt checks, 20 negative/positive verifier tests, and 2 CLI tests were added. Two independently pinned *real* original PDF sources (one university dissertation, one official court judgment) passed verification on a fresh retrieval. Detailed evidence: [RFC-011](RFC-011-SOURCE-GROUNDING.md).
+- **P1–P5: NOT YET IMPLEMENTED/VALIDATED** as substantive release features. The next approved engineering dependency is P1, author-faithful argument reconstruction.
+- Results remain restricted to source **text integrity** and structural compatibility; the 77 unit tests are *not* a measurement of doctoral-quality reasoning or novelty correctness.
+
 ## 1. Decision and evidence limitations
 
 DOCTRINA **is ready for controlled pilot study**, not for claims of academic validity or dissertation grading. The additional batch covers **seven distinct published doctoral dissertations**, four concept-object cases (P003, P004, P005, P007) and three norm-object cases (P006, P008, P009). Alongside previous P002, eight published theses have been used for limited excerpt-level tests.
