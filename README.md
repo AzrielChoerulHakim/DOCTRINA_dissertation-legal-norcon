@@ -1,6 +1,6 @@
-# DOCTRINA — Norm / Concept Dissertation Argumentation (v0.3.2 Design)
+# DOCTRINA v0.4 — Norm / Concept Dissertation Reasoning Core
 
-**Status:** functional design prototype + executable structural argument lint; not a certified doctoral examiner or a full legal reasoner.
+**Status:** local-first v0.4 object/provenance and argument-review prototype with a backward-compatible v0.3 graph linter. **Not an autonomous semantic legal examiner or doctoral novelty-certification tool.**
 
 **CURRENT RESEARCH OBJECT SCOPE: ONLY NORMA or KONSEP.** The dissertation must identify a specific legal norm or a specific legal concept as the primary research object. Theories may support interpretation but are **not** research objects, targets for proof/falsification, or required original outputs. See [RFC-007: Norm / Concept Scope Freeze](docs/RFC-007-NORM-CONCEPT-SCOPE.md).
 
@@ -27,7 +27,24 @@
 - `tests/test_argument_graph.py` — executable regression tests.
 - `docs/TEST-RESULTS.md` — generated run record after execution.
 
-## Local demonstration
+## v0.4 local-first draft workflow
+
+The new CLI reads local UTF-8 drafts, records original paragraph passages and their exact line/character positions, and produces source-linked reports after researcher/agent annotation. **It deliberately does not invent premises or make semantic conclusions from text segmentation.**
+
+```bash
+python scripts/doctrina_cli.py init --input examples/dissertation-draft-synthetic.txt --object concept --title "Kepentingan umum" --locus "simulasi" --out /tmp/doctrina-case.json
+python scripts/doctrina_cli.py check /tmp/doctrina-case.json
+python scripts/doctrina_cli.py report /tmp/doctrina-case.json --out /tmp/doctrina-review.md
+python -m unittest discover -s tests -v
+```
+
+The CLI intake is intentionally incomplete until a real claim reconstruction is confirmed by the researcher. Follow [Draft Reconstruction Protocol](skills/doctrina/templates/draft-reconstruction-protocol.md) for the semantic agent-led step. Do not commit unpublished manuscripts or any associated private case/report to this public repo.
+
+- [Data schema v0.4](schemas/case-v0.4.schema.json)
+- [Implementation and limitations — RFC-009](docs/RFC-009-REASONING-CORE-IMPLEMENTATION.md)
+- [New v0.4 tests](tests/test_doctrina_core.py) and [GitHub Actions workflow](.github/workflows/test.yml)
+
+## Legacy v0.3 demonstration
 
 ```bash
 python scripts/audit_argument_graph.py examples/kepentingan-umum-illustrative.json --mode draft
@@ -50,4 +67,4 @@ Initial repository import from **DOCTRINA v0.3 — Internal Argumentation Engine
 - **CURRENT SCOPE:** [RFC-007 — NORMA / KONSEP Only](docs/RFC-007-NORM-CONCEPT-SCOPE.md) supersedes any broader historical examples involving theories as research objects.
 - [RFC-006 — Normative–Conceptual Doctoral Research](docs/RFC-006-NORMATIVE-CONCEPTUAL-DOCTORAL-RESEARCH.md) distinguishes doctrinal, conceptual, interpretive, ontological, critical and normative claims, and proposes five high-risk transitions to audit.
 - [Conceptual Research Charter](skills/doctrina/templates/conceptual-research-charter.md) provides a live-draft worksheet for the author's actual research problem, methodology, theory roles, argument scope, chapter spine and human revision decisions.
-- **Release status:** `SKILL.md` now declares the NORMA/KONSEP-only scope and three final novelty classes (v0.3.2 design instructions). The Python linter and its 18 previously documented mechanical tests remain v0.3 and **do not enforce research-object typing or classify novelty**. RFC-006/007/008 are research/design rules; schema migration, semantic evaluation, human review and regression tests remain future work. No substantive doctoral examiner or novelty-certification capability has been validated.
+- **Release status:** v0.4 implements a norm/concept-only intake schema, local draft passage extraction, provenance validation and Markdown argument review. Legacy v0.3 argument-graph tests still apply; automated novelty assessment and validated semantic jurisprudential reasoning remain out of scope. Researchers retain control over their interpretations and revisions.
