@@ -17,6 +17,18 @@ jobs:
         run: python -m pip install 'pypdf>=4,<8' 'reportlab>=4,<6'
       - name: Run v0.3, v0.4 and v0.4.1 regression suites
         run: python -m unittest discover -s tests -v
+      - name: P1 original-draft, multi-voice and conditional reconstruction smoke
+        run: |
+          python scripts/demo_fidelity.py --out /tmp/doctrina-p1-demo.json
+          python scripts/fidelity_cli.py check --case /tmp/doctrina-p1-demo.json --draft examples/fidelity_draft_synthetic.txt --format markdown --out /tmp/doctrina-p1-report.md
+          python scripts/doctrina_cli.py check /tmp/doctrina-p1-demo.json --original-draft examples/fidelity_draft_synthetic.txt --out /tmp/doctrina-p1-core-audit.json
+          python - <<'PY'
+          import json
+          data = json.load(open('/tmp/doctrina-p1-core-audit.json', encoding='utf-8'))
+          assert data['fidelity']['gate'] == 'RESEARCHER_REVIEW_REQUIRED'
+          assert data['fidelity']['counts']['confirmed'] == 0
+          assert data['originality'].startswith('LOCKED')
+          PY
       - name: Smoke test local-only draft intake
         run: |
           python scripts/doctrina_cli.py init --input examples/dissertation-draft-synthetic.txt --object concept --title "Kepentingan umum" --locus "simulasi" --out /tmp/doctrina-case.json
