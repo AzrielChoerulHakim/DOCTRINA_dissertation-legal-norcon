@@ -73,7 +73,7 @@ def main(argv=None) -> int:
     args = parser().parse_args(argv)
     try:
         if args.action == "start":
-            case = begin(read_case(args.case), Path(args.draft).read_text(encoding="utf-8"))
+            case = begin(read_case(args.case), Path(args.draft).read_bytes().decode("utf-8"))
             save(args.out, case)
             print(f"Initialized local fidelity ledger: {args.out} (no claims invented or approved)")
             return 0
@@ -93,7 +93,7 @@ def main(argv=None) -> int:
             return 0
         if args.action == "check":
             case = read_case(args.case)
-            original = Path(args.draft).read_text(encoding="utf-8")
+            original = Path(args.draft).read_bytes().decode("utf-8")
             result = inspect(case, original)
             out = render_report(case, original) if args.format == "markdown" else json.dumps(
                 result, ensure_ascii=False, indent=2) + "\n"
@@ -107,7 +107,7 @@ def main(argv=None) -> int:
             return 2 if result["gate"] in {"BLOCKED_SOURCE_OR_APPROVAL", "NOT_INITIALIZED"} else 0
         if args.action == "sync":
             case = version_sync(read_case(args.case),
-                                Path(args.draft).read_text(encoding="utf-8"))
+                                Path(args.draft).read_bytes().decode("utf-8"))
             save(args.out, case)
             print(f"Updated source version; ALL previous approvals require re-verification: {args.out}")
             return 0
@@ -118,7 +118,7 @@ def main(argv=None) -> int:
                     "an AI agent must not impersonate a researcher."
                 )
             case = read_case(args.case)
-            original = Path(args.draft).read_text(encoding="utf-8")
+            original = Path(args.draft).read_bytes().decode("utf-8")
             record = next((r for r in case.get("reconstruction", {}).get("records", [])
                            if r.get("id") == args.id), None)
             if record is None:
