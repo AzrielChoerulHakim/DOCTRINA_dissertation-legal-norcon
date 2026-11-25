@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/AzrielChoerulHakim/DOCTRINA_dissertation-legal-norcon/blob/main/schemas/case-v0.4.schema.json",
   "title": "DOCTRINA v0.4 Norm/Concept Dissertation Case",
-  "description": "Structural contract; evidence inspection and interpretive soundness require human review.",
+  "description": "Structural v0.4 contract retained for backward compatibility; optional v0.4.2 P1 reconstruction ledger follows schemas/reconstruction-v1.schema.json and is mechanically checked against original draft.",
   "type": "object",
   "required": [
     "schema_version",
@@ -180,6 +180,41 @@
           "enum": [
             "NOT_READY"
           ]
+        }
+      }
+    },
+    "reconstruction": {
+      "type": "object",
+      "description": "Opt-in strict P1: protocol, source SHA, reviewer-proposed records and version-bound self-attested decisions. See reconstruction-v1.schema.json; original manuscript must be supplied separately.",
+      "required": [
+        "protocol",
+        "draft_sha256",
+        "records",
+        "decisions",
+        "status"
+      ],
+      "properties": {
+        "protocol": {
+          "const": "1.0"
+        },
+        "draft_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "status": {
+          "type": "string"
         }
       }
     }
