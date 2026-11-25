@@ -2,6 +2,8 @@
 
 **Priority:** the module receiving the greatest amount of attention and revision time for ongoing drafts.
 
+The v0.4 CLI supplies **mechanical** object/provenance/graph checks. It does not determine conceptual truth, the adequacy of normative warrants, legal validity, or interpretive superiority. These must be assessed as a reasoned source-grounded review using the protocol and author approval.
+
 ## Object-specific review (NORMA / KONSEP)
 
 **NORMA:** verify exact authoritative source, jurisdiction, effective period, hierarchy, scope, exceptions and distinction between law's validity and a moral/policy justification. Test the author's argument about the identified norm, not a whole philosophical theory.
