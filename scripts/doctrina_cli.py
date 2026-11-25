@@ -39,9 +39,11 @@ def options() -> argparse.ArgumentParser:
     check = subs.add_parser("check", help="Mechanical provenance/object/argument checks")
     check.add_argument("case", help="v0.4 JSON case")
     check.add_argument("--out", help="Save JSON findings to a local path")
+    check.add_argument("--original-draft", help="INDEPENDENT original UTF-8 draft (mandatory for strict P1)")
     report = subs.add_parser("report", help="Anchored Markdown argument review, no inferred truth claims")
     report.add_argument("case", help="v0.4 JSON case")
     report.add_argument("--out", help="Save Markdown report to a local path")
+    report.add_argument("--original-draft", help="INDEPENDENT original UTF-8 draft (mandatory for strict P1)")
     source_check = subs.add_parser("verify-sources", help="Verify original local PDF/text SHA-256, page and excerpt")
     source_check.add_argument("--manifest", required=True, help="Pinned original-source JSON manifest")
     source_check.add_argument("--source-root", required=True, help="Directory containing authorized original sources")
@@ -80,8 +82,10 @@ def main(argv=None) -> int:
                 print(output, end="")
             return 2 if result["counts"]["UNVERIFIED"] else 0
         data = read_case(args.case)
+        original = (Path(args.original_draft).read_text(encoding="utf-8")
+                    if getattr(args, "original_draft", None) else None)
         if args.command == "check":
-            result = review(data)
+            result = review(data, original_text=original)
             output = json.dumps(result, ensure_ascii=False, indent=2)+"\n"
             if args.out:
                 write_content(args.out, output)
@@ -90,13 +94,14 @@ def main(argv=None) -> int:
                 print(output, end="")
             return 2 if result["counts"]["critical"] else 0
         if args.command == "report":
-            result = markdown_report(data)
+            result = markdown_report(data, original_text=original)
             if args.out:
                 write_content(args.out, result)
                 print(f"Wrote {args.out}")
             else:
                 print(result)
-            return 0
+            return 2 if (isinstance(data.get("reconstruction"), dict) and
+                         review(data, original_text=original)["counts"]["critical"]) else 0
         return 2
     except (ValueError, OSError, UnicodeError, json.JSONDecodeError) as exc:
         print(f"DOCTRINA error: {exc}", file=sys.stderr)
