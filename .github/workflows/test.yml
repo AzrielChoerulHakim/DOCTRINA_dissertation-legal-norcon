@@ -43,3 +43,16 @@ jobs:
           name: doctrina-batch-p003-p009
           path: /tmp/doctrina-batch/
           if-no-files-found: error
+      - name: Integrate two public original PDFs (source discovery only)
+        id: source_originals
+        continue-on-error: true
+        run: python scripts/verify_published_sources_ci.py --out-dir /tmp/doctrina-source-discovery
+      - name: Upload source-verification results (NO original PDF bytes)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: doctrina-source-discovery
+          path: |
+            /tmp/doctrina-source-discovery/source-discovery-report.json
+            /tmp/doctrina-source-discovery/proposed-source-pins.json
+          if-no-files-found: warn
