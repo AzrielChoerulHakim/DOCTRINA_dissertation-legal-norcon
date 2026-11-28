@@ -1,12 +1,12 @@
-# DOCTRINA — Research Charter for an Ongoing Dissertation on NORMA / KONSEP
+# DOCTRINA — Research Charter for an Ongoing Dissertation on NORMA / PUTUSAN / KONSEP
 
-**Scope:** normative-conceptual legal doctoral dissertation examining a **legal norm** or a **legal concept**. This is not an institutional chapter template, a theory-testing framework, or a novelty certification form.
+**Scope:** normative-conceptual legal doctoral dissertation examining a **legal norm**, **judicial judgment** or **legal concept**. This is not an institutional chapter template, a theory-testing framework, or a novelty certification form.
 
 ## 1. Identify permitted research object
 
 - Project and researcher-approved title:
-- **Primary research object:** NORMA / KONSEP (choose exactly one):
-- Secondary object, if needed: NORMA / KONSEP:
+- **Primary research object:** NORMA / PUTUSAN / KONSEP (choose exactly one):
+- Secondary object, if needed: NORMA / PUTUSAN / KONSEP:
 - Exact norm identifier and authoritative source / exact legal concept and located usages:
 - Jurisdiction and effective date/timeframe, where applicable:
 - Actual chapter/section/paragraph being assessed, with precise locator:
@@ -34,9 +34,18 @@
 - What legal consequences are claimed to follow, and what justifies this transition?:
 - What counterexample, boundary case or competing reading would matter?:
 
+## 2C. PUTUSAN route (complete if applicable)
+
+- Court, case identifier, decision date, posture, jurisdiction, source and subsequent status:
+- Distinguish party submissions, accepted facts, issues, reasons, separate opinions, operative order:
+- Necessary reasoning (if appropriate to the jurisdiction), rival reading and limits:
+- Contribution of each decision to the legal problem and any warrant for generalization:
+
 ## 3. Method, supporting materials and limited theory roles
 
-- Actual normative/doctrinal/conceptual/interpretive/critical approach used:
+- Primary route (symbolic polysyllogism / Derridean deconstruction / explicit combination), warrant, limits and handoff:
+- Provisional contribution type; no early novelty certification:
+- Core idea, provisional argument and directed research ledger (see construction-ledger.md):
 - Why this approach can answer the selected **norm/concept** problem:
 - Limits: which positive-law or empirical propositions cannot be established:
 - Theory, if used, is only an **analytical/interpretive instrument**, not the object of the dissertation:

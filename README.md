@@ -1,14 +1,24 @@
-# DOCTRINA v0.4.2 — Norm / Concept Dissertation Review with Author-Faithful Reconstruction
+# DOCTRINA v0.5.0 — Directed Norm / Judgment / Concept Dissertation Construction
 
 **Status:** local-first norm/concept structural audit + v0.4.1 original-source verification + **P1 version-bound authorial reconstruction and human-only interactive self-attestation**. Backward-compatible with legacy v0.3 structural lint. **Not independent semantic accuracy, verified researcher identity, legal validity, or doctoral novelty certification.**
 
-**CURRENT RESEARCH OBJECT SCOPE: ONLY NORMA or KONSEP.** The dissertation must identify a specific legal norm or a specific legal concept as the primary research object. Theories may support interpretation but are **not** research objects, targets for proof/falsification, or required original outputs. See [RFC-007: Norm / Concept Scope Freeze](docs/RFC-007-NORM-CONCEPT-SCOPE.md).
+**CURRENT RESEARCH OBJECT SCOPE: NORMA, PUTUSAN, KONSEP.** Exactly one primary object; theory is an instrument only. The [methodological constitution](skills/doctrina/CONSTITUTION.md) supersedes the historical two-object freeze.
 
 **Design shift from v0.2:** the central objective is the *internal examination of the argument within an ongoing normative–conceptual law dissertation*. Final evaluation of originality occurs **after** internal audit, dialectical challenge, dissertation integration and a human-reviewed defense rehearsal. Prior scholarship remains available throughout for doctrinal and conceptual interpretation.
+
+## New in v0.5.0
+
+DOCTRINA is an assistant skill, not a website. It supports research from zero and live-draft review, with bounded research, symbolic polysyllogism or Derridean deconstruction, and explicit idea-to-synthesis dependencies. A provisional novelty direction guides research; final novelty remains the last gate. Existing P1 and source verification remain mandatory when applicable.
+
+- [Skill entrypoint](skills/doctrina/SKILL.md) and [constitution](skills/doctrina/CONSTITUTION.md)
+- [Directed construction](skills/doctrina/modules/08-directed-construction.md), [symbolic logic](skills/doctrina/modules/09-symbolic-polysyllogism.md), [deconstruction](skills/doctrina/modules/10-derrida-deconstruction.md)
+- [Construction ledger](skills/doctrina/templates/construction-ledger.md), [schema](schemas/construction-v1.schema.json), [structural validator](scripts/audit_construction.py), [synthetic tests](tests/test_construction.py)
+- Run `python scripts/audit_construction.py path/to/private-ledger.json`; findings do not establish legal or philosophical correctness. Previous release claims below are historical.
 
 ## What DOCTRINA actually examines
 
 - **NORMA:** text/source, applicability, hierarchy, interpretation, exceptions, coherence and normative consequences of an identifiable legal rule or principle.
+- **PUTUSAN:** legal issues, accepted facts versus submissions, reasoning, operative order, authority and limits of generalization.
 - **KONSEP:** meaning, competing definitions/conceptions, boundary cases, internal coherence and implications of an identifiable legal concept.
 - **Central process:** reconstruct the author's claims about the norm/concept, challenge their internal warrants and cross-chapter dependencies, then evaluate the strongest alternative interpretation. **Originality is assessed last.**
 - **Three final originality types only:** `normative`, `interpretative`, and `conceptual`. One primary contribution type is chosen from demonstrated findings; a secondary type is optional. A distinct title or rewording does not prove novelty.
@@ -20,7 +30,7 @@
 - `docs/RFC-005-ARGUMENT-FIRST-DOCTORAL-REVIEW.md` — specification and audit methodology.
 - [RFC-008: Three-Type Novelty Baseline](docs/RFC-008-THREE-TYPE-NOVELTY-BASELINE.md) — final-gate contribution contract.
 - [`final-novelty-matrix.md`](skills/doctrina/templates/final-novelty-matrix.md) — proposition-level final comparison (not for early certification).
-- `skills/doctrina/modules/` — seven focused stage instructions.
+- `skills/doctrina/modules/` — focused review and construction instructions.
 - `skills/doctrina/templates/` — review card, ledger, decision-log templates.
 - `examples/kepentingan-umum-illustrative.json` — **synthetic** argument graph; not an assertion of Indonesian positive law.
 - `scripts/audit_argument_graph.py` — dependency, premises, quoted-source and inference lint.
@@ -124,7 +134,7 @@ Initial repository import from **DOCTRINA v0.3 — Internal Argumentation Engine
 
 ## Methodological research and scope decisions
 
-- **CURRENT SCOPE:** [RFC-007 — NORMA / KONSEP Only](docs/RFC-007-NORM-CONCEPT-SCOPE.md) supersedes any broader historical examples involving theories as research objects.
+- **CURRENT SCOPE:** [methodological constitution](skills/doctrina/CONSTITUTION.md) permits norm, judgment or concept; RFC-007 is historical.
 - [RFC-006 — Normative–Conceptual Doctoral Research](docs/RFC-006-NORMATIVE-CONCEPTUAL-DOCTORAL-RESEARCH.md) distinguishes doctrinal, conceptual, interpretive, ontological, critical and normative claims, and proposes five high-risk transitions to audit.
 - [Conceptual Research Charter](skills/doctrina/templates/conceptual-research-charter.md) provides a live-draft worksheet for the author's actual research problem, methodology, theory roles, argument scope, chapter spine and human revision decisions.
 - **Release status:** v0.4 implements a norm/concept-only intake schema, local draft passage extraction, provenance validation and Markdown argument review. Legacy v0.3 argument-graph tests still apply; automated novelty assessment and validated semantic jurisprudential reasoning remain out of scope. Researchers retain control over their interpretations and revisions.

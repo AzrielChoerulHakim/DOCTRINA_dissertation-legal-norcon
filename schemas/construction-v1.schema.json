@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DOCTRINA directed construction ledger v1 (structural only)",
+  "type": "object",
+  "required": [
+    "object",
+    "question",
+    "novelty_direction",
+    "method",
+    "nodes",
+    "searches"
+  ],
+  "properties": {
+    "object": {
+      "type": "object",
+      "required": [
+        "type",
+        "locus",
+        "jurisdiction",
+        "timeframe"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "norm",
+            "judgment",
+            "concept"
+          ]
+        },
+        "locus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "jurisdiction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timeframe": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1
+    },
+    "novelty_direction": {
+      "enum": [
+        "normative",
+        "interpretative",
+        "conceptual",
+        "undecided"
+      ]
+    },
+    "method": {
+      "type": "object",
+      "required": [
+        "route",
+        "warrant"
+      ],
+      "properties": {
+        "route": {
+          "enum": [
+            "symbolic",
+            "deconstruction",
+            "combined"
+          ]
+        },
+        "warrant": {
+          "type": "string",
+          "minLength": 1
+        },
+        "handoff": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "statement",
+          "parents",
+          "depends_on",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "idea",
+              "core",
+              "subargument",
+              "development",
+              "intermediate",
+              "synthesis"
+            ]
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parents": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "relation"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "relation": {
+                  "enum": [
+                    "supports",
+                    "derives",
+                    "bounds",
+                    "tests",
+                    "revises",
+                    "contextualizes",
+                    "synthesizes"
+                  ]
+                }
+              }
+            }
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "status": {
+            "enum": [
+              "proposed",
+              "open",
+              "supported",
+              "challenged",
+              "rejected",
+              "re_review_required"
+            ]
+          }
+        }
+      }
+    },
+    "searches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "target",
+          "question",
+          "expected_evidence",
+          "stop_criterion"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target": {
+            "type": "string",
+            "minLength": 1
+          },
+          "question": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected_evidence": {
+            "type": "string",
+            "minLength": 1
+          },
+          "stop_criterion": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

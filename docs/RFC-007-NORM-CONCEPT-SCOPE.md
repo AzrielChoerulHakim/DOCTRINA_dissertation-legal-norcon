@@ -1,5 +1,7 @@
 # RFC-007 — DOCTRINA Object Scope Freeze: NORMA / KONSEP
 
+> Historical decision: the two-object restriction is superseded on 28 November 2026 by [the methodological constitution](../skills/doctrina/CONSTITUTION.md). Judicial judgment is now a valid primary object. Theory remains instrumental only. Preserve this RFC as release history.
+
 **Date:** 25 November 2026  
 **Decision:** accepted project scope; applies immediately to `SKILL.md` and Module 01.  
 **Implementation status:** instruction-level scope now; Python graph linter and 18 regression tests retain their v0.3 behavior until an explicit schema migration.  

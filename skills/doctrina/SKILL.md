@@ -1,26 +1,26 @@
 ---
 name: doctrina
 metadata:
-  version: "0.4.2-author-fidelity-p1"
+  version: "0.5.0-directed-construction"
 description: >-
-  Argument-first review of ongoing doctoral normative-conceptual law dissertations
-  whose primary research object is a LEGAL NORM or LEGAL CONCEPT, never a theory.
-  Test internal warrants in live drafts; final originality evaluation comes last.
+  Construct, develop and review doctoral normative legal dissertations about a legal
+  norm, judicial judgment, or legal concept. Use directed research, symbolic
+  polysyllogism or Derridean deconstruction, and traceable argument architecture.
 ---
 
-# DOCTRINA v0.4.2 — Source-Grounded, Author-Faithful Norm / Concept Dissertation Review
+# DOCTRINA v0.5.0 — Directed Dissertation Construction and Review
 
 ## Mission
-Help the researcher build and defend the **central argument about a legal norm or legal concept** of an ongoing normative-conceptual doctoral dissertation. The dissertation is an evolving argument, not a generic academic paper.
+Read [CONSTITUTION.md](CONSTITUTION.md) first; it controls current scope and methods. Help construct from zero or develop and defend the **central argument about a legal norm, judicial judgment or legal concept**. The dissertation is an evolving argument, not a generic academic paper.
 
-**Research-object boundary:** Only `norm` and `concept` qualify as a primary research object. Both can be examined in combination, with one declared primary object. Theory is permitted **only as a supporting interpretive or analytical instrument**, not a research object or required theoretical invention. Follow `../../docs/RFC-007-NORM-CONCEPT-SCOPE.md`; older RFCs are historical where broader.
+**Research-object boundary:** exactly one primary `norm`, `judgment`, or `concept`; others may support it. Theory is instrumental only. The constitution supersedes the earlier two-object freeze.
 
 ## Non-negotiable constraints
-- **Scope first:** identify a legal norm or legal concept with exact usage/source locator, and jurisdiction/time where material. A project examining the overall truth of a theory as its object is out of scope.
-- **Theory as instrument only:** cite specific and accurately represented theoretical positions where they help analyze the norm/concept; never purport to prove/falsify an entire theory or require creation of a general theory.
+- **Scope first:** identify a legal norm, judgment or legal concept with exact usage/source locator, and jurisdiction/time where material. A project examining the overall truth of a theory as its object is out of scope.
+- **Theory as instrument only:** cite specific and accurately represented theoretical positions where they help analyze the norm/judgment/concept; never purport to prove/falsify an entire theory or require creation of a general theory.
 - **Originality audit is the last gate.** Read literature continuously to understand and test the argument; do **not** certify novelty, score novelty or run an originality verdict until internal and dialectical review plus whole-dissertation integration are complete.
 - **Exactly three final contribution classes:** `normative`, `interpretative`, and `conceptual`. One *primary* category is selected only for a defensible final contribution candidate; secondary contribution is optional and independently supported. See `../../docs/RFC-008-THREE-TYPE-NOVELTY-BASELINE.md`. The classifications are DOCTRINA design choices, not universally mandated doctoral categories.
-- **Do not construct novelty to fit a label:** the authorized, stabilized thesis and inspected earlier propositions determine whether a defensible contribution exists. Novelty is a last-stage bounded comparative judgment, not a drafting target imposed in advance.
+- **Do not construct novelty to fit a label:** the authorized, stabilized thesis and inspected earlier propositions determine whether a defensible contribution exists. A provisional target type guides inquiry; novelty itself is a last-stage bounded comparative judgment, not a result imposed in advance.
 - Start from **the user's actual current section/chapter/argument**, not a mandatory introduction-to-conclusion pipeline. If the project is already in progress, reconstruct from the supplied text and preserve its authorial commitments.
 - **Separate four judgments:** (i) structural completeness, (ii) inferential adequacy, (iii) source/interpretation adequacy, and (iv) institutional/doctoral judgment. A connected graph cannot prove legal truth or sound reasoning.
 - Treat propositions, concepts, conceptions, norms, doctrines, theoretical descriptions, value judgments and conclusions distinctly. Keep temporal and jurisdictional scope visible for positive law.
@@ -29,8 +29,11 @@ Help the researcher build and defend the **central argument about a legal norm o
 - **Source-grounding rule (v0.4.1):** no "directly inspected" status for a decisive excerpt merely because a passage matches an AI-authored excerpt fixture. Obtain the actual original PDF/text file, verify its previously pinned SHA-256 and page-specific source excerpt, and disclose missing or partially inspected sources. A source match does NOT establish that a legal rule is in force or that a disputed interpretation follows.
 - The researcher owns thesis changes, theoretical commitments, accepted responses and chapter approvals; the skill proposes, tests and records.
 
+## New construction and methodological routing
+Use `modules/08-directed-construction.md` for new research, `modules/09-symbolic-polysyllogism.md` or `modules/10-derrida-deconstruction.md` for method, and `templates/construction-ledger.md` for traceability. For an existing manuscript preserve P1 and enter at the requested stage. Every search must target a question or node and have a stopping criterion. Test evidence against provisional ideas; revise rather than defend a failed thesis. The optional `../../scripts/audit_construction.py` checks ledger structure and dependency impact only.
+
 ## Engagement protocol
-1. **Identify object and target:** record primary research object as `norm` or `concept`, name the legal norm/concept, then determine supplied paragraph, subsection, chapter or thesis. If absent, report missing manuscript evidence instead of inventing it.
+1. **Identify object and target:** record primary research object as `norm`, `judgment`, or `concept`, name the legal object, then determine supplied paragraph, subsection, chapter or thesis. If no manuscript exists, use Module 08 to build a clearly proposed argument from the bounded object; do not invent an existing manuscript.
 2. **Preserve author text and reconstruct:** write a brief, faithful claim summary before criticism. Clearly label a system reconstruction as such; do not fabricate the author's unstated warrants as facts.
 3. **Audit the specified scope:** read `modules/02-argument-reconstruction.md` and `modules/03-internal-audit.md`; employ the chapter integration module if the target depends on prior conclusions.
 4. **Stress-test:** read `modules/04-dialectical-stress.md` only after internal reconstruction, except when the user asks for immediate counterarguments.
@@ -38,13 +41,17 @@ Help the researcher build and defend the **central argument about a legal norm o
 6. **Finalize:** doctoral defense rehearsal precedes the final originality audit. The latter may remain blocked when substantive findings are still open.
 
 ## Modules (read as needed, do not load all by default)
-1. `modules/01-research-and-method.md`: norm-vs-concept route, research object, method and limited theory-as-instrument role.
+1. `modules/01-research-and-method.md`: norm/judgment/concept route, research object, method and limited theory-as-instrument role.
 2. `modules/02-argument-reconstruction.md`: claim, premise, warrant, inferential type, qualification, objections.
 3. `modules/03-internal-audit.md`: structural, logical, semantic, methodological, intra-chapter checks.
 4. `modules/04-dialectical-stress.md`: rival interpretations, objections, boundary and counterfactual tests.
 5. `modules/05-live-dissertation-integration.md`: chapter spine, change impact, versioned review loop.
 6. `modules/06-doctoral-defense.md`: examination of the **stabilized** thesis and commitments.
 7. `modules/07-final-originality-audit.md`: **last step only**, proposition-level comparison under the three contribution types; use `templates/final-novelty-matrix.md`.
+
+8. `modules/08-directed-construction.md`: bounded discovery, stage gates and argument-led writing.
+9. `modules/09-symbolic-polysyllogism.md`: definitions, inference chains, limits and countermodels.
+10. `modules/10-derrida-deconstruction.md`: close reading, textual tensions, alternative readings, bounded consequences.
 
 Consult `references/argument-taxonomy.md` for fault categories and methodological exceptions; `references/epistemic-boundaries.md` for evidentiary statuses and confidence limits. Source locators and direct inspected texts must be retained in audit artifacts.
 
@@ -130,7 +137,7 @@ Never emit a numeric "doctorate quality score" or automatically infer global ori
 The optional standard-library script `../../scripts/audit_argument_graph.py` checks the JSON argument ledger's structure, references, some missing-warrant and dependency warnings. It is a **lint tool**, not a proof of validity. Run `python -m unittest discover -s tests -v` in the package root. In existing chat-only deployments, follow the same review sequence manually.
 
 ## Scope precedence
-`../../docs/RFC-007-NORM-CONCEPT-SCOPE.md` overrides historical examples that treat a whole theory as an object of dissertation research. DOCTRINA tests an author's claims about a legal norm or concept, not the overall validity of a theorist's system. `../../docs/RFC-008-THREE-TYPE-NOVELTY-BASELINE.md` defines the exhaustive three-type design taxonomy for the FINAL originality audit; older, broader novelty suggestions are superseded. Paths are relative to the repository root (the actual files are under `docs/`).
+`CONSTITUTION.md` overrides the historical two-object restriction in RFC-007; theory remains instrumental only. RFC-008 controls the final three-type originality taxonomy, with provisional direction allowed. Older RFCs and pilot results remain historical, not validation of the expanded scope.
 
 ## Institutional formatting
 University profiles alter chapter/format requirements but cannot override epistemic rules. When not grounded in current official guidance, identify profiles as examples only.

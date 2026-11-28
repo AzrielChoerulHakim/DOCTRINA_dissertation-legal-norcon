@@ -3,7 +3,7 @@
 **Status:** ACCEPTED AS DESIGN BASELINE — instruction-level only, NOT validated academic novelty classifier  
 **Date:** 25 November 2026  
 **Supersedes:** any open-ended novelty classifications in older RFCs.  
-**Depends on:** [RFC-007](RFC-007-NORM-CONCEPT-SCOPE.md): research object is exclusively a legal **norm** or legal **concept**.  
+**Depends on:** [RFC-007](RFC-007-NORM-CONCEPT-SCOPE.md): historical two-object baseline; [the current constitution](../skills/doctrina/CONSTITUTION.md) adds judgments. A provisional contribution direction is permitted, not a final novelty verdict.  
 **Sequence rule:** final originality review always occurs **after** internal argument examination, dialectical stress, dissertation integration, defense rehearsal and researcher's provisional sign-off.
 
 ## 1. Scope decision
@@ -35,7 +35,7 @@ The same dissertation may generate several legally relevant results, but the **p
 For each **proposed** contribution, the reviewer must be able to trace:
 
 \`\`\`
-Identified legal norm or concept
+Identified legal norm, judgment or concept
   → real doctrinal / interpretative / conceptual problem
   → author-stated thesis and defended premises
   → adequate inferential and source warrants

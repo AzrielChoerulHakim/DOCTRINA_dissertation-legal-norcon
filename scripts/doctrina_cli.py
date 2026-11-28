@@ -20,7 +20,7 @@ def options() -> argparse.ArgumentParser:
     subs = parser.add_subparsers(dest="command", required=True)
     intake = subs.add_parser("init", help="Segment a local UTF-8 draft into candidate passages, not invented claims")
     intake.add_argument("--input", required=True, help="Local draft in UTF-8 plain text")
-    intake.add_argument("--object", required=True, choices=["norm", "concept"])
+    intake.add_argument("--object", required=True, choices=["norm", "judgment", "concept"])
     intake.add_argument("--title", required=True)
     intake.add_argument("--locus", default="")
     intake.add_argument("--jurisdiction", default="")
@@ -29,7 +29,7 @@ def options() -> argparse.ArgumentParser:
 
     migrate = subs.add_parser("migrate", help="Migrate v0.3 ledger, marking all old claims unanchored")
     migrate.add_argument("--input", required=True)
-    migrate.add_argument("--object", required=True, choices=["norm", "concept"])
+    migrate.add_argument("--object", required=True, choices=["norm", "judgment", "concept"])
     migrate.add_argument("--title", required=True)
     migrate.add_argument("--locus", default="")
     migrate.add_argument("--jurisdiction", default="")

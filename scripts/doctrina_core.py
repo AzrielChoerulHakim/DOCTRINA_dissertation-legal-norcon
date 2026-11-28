@@ -12,7 +12,7 @@ from typing import Any
 from audit_argument_graph import audit_document
 
 VERSION = "0.4.0"
-TYPES = {"norm", "concept"}
+TYPES = {"norm", "judgment", "concept"}
 ATTRIBUTIONS = {"author", "opponent", "quoted_source", "proposed"}
 PROVENANCE = {"author_explicit", "researcher_approved", "ai_proposed", "legacy_unverified"}
 REVIEWS = ("internal_review", "dialectical_review", "integration_review", "defense_review")
@@ -23,6 +23,12 @@ QUESTIONS = {
         "What warrant connects the norm to the author's legal conclusion?",
         "Are positive-law validity, moral legitimacy and policy preference distinct?",
         "What is the strongest contrary reading and resulting legal consequence?",
+    ],
+    "judgment": [
+        "Which court, case identifier, date, authoritative text and procedural posture are examined?",
+        "Are parties’ submissions, accepted facts, reasons and operative order distinguished?",
+        "What reasoning is necessary to disposition, and what alternative reading is defensible?",
+        "What is the jurisdiction-specific authority, subsequent status and limit of generalization?",
     ],
     "concept": [
         "Where is the legal concept used in sources actually inspected?",
@@ -67,9 +73,9 @@ def new_case(text: str, primary_type: str, title: str, *, locus: str = "",
              jurisdiction: str = "", temporal_scope: str = "",
              source_filename: str = "draft.txt") -> dict:
     if primary_type not in TYPES:
-        raise ValueError("Object must be norm or concept; theory is outside DOCTRINA")
+        raise ValueError("Object must be norm, judgment or concept; theory is outside DOCTRINA")
     if not nonempty(title):
-        raise ValueError("Named legal norm or concept required")
+        raise ValueError("Named legal norm, judgment or concept required")
     return {
         "schema_version": VERSION,
         "research_object": {
@@ -77,7 +83,7 @@ def new_case(text: str, primary_type: str, title: str, *, locus: str = "",
             "exact_locus": locus.strip(), "jurisdiction": jurisdiction.strip(),
             "temporal_scope": temporal_scope.strip(),
             "source_state": "unverified",
-            "legal_materials": [], "concept_usages": [],
+            "legal_materials": [], "concept_usages": [], "judgments": [],
         },
         "draft": {
             "filename": Path(source_filename).name,
@@ -120,14 +126,14 @@ def validate(case: dict) -> list[dict]:
         add("INVALID_VERSION", "critical", "schema_version", "Explicit migration to v0.4 required")
     obj = case.get("research_object")
     if not isinstance(obj, dict):
-        return findings + [issue("OBJECT_REQUIRED", "critical", "research_object", "Select norm or concept")]
+        return findings + [issue("OBJECT_REQUIRED", "critical", "research_object", "Select norm, judgment or concept")]
     t = obj.get("primary_type")
     if t not in TYPES:
-        add("OBJECT_OUT_OF_SCOPE", "critical", "research_object.primary_type", "Only norm or concept; theories disallowed")
+        add("OBJECT_OUT_OF_SCOPE", "critical", "research_object.primary_type", "Only norm, judgment or concept; theories disallowed")
     if not nonempty(obj.get("title")):
-        add("OBJECT_UNNAMED", "critical", "research_object.title", "Name the legal norm/concept")
+        add("OBJECT_UNNAMED", "critical", "research_object.title", "Name the legal norm/judgment/concept")
     if not nonempty(obj.get("exact_locus")):
-        add("OBJECT_LOCUS_UNVERIFIED", "major", "research_object.exact_locus", "Exact legal source or concept usage needed")
+        add("OBJECT_LOCUS_UNVERIFIED", "major", "research_object.exact_locus", "Exact legal source, judgment or concept usage needed")
 
     if t == "norm":
         if not nonempty(obj.get("jurisdiction")):
@@ -145,6 +151,24 @@ def validate(case: dict) -> list[dict]:
                     add("NORM_SOURCE_LOCATOR", "major", f"legal_materials[{i}]", "Exact locator required")
                 if not isinstance(m, dict) or m.get("inspection_status") != "inspected":
                     add("NORM_SOURCE_UNVERIFIED", "major", f"legal_materials[{i}]", "Source passage not inspected")
+    elif t == "judgment":
+        for field in ("jurisdiction", "temporal_scope"):
+            if not nonempty(obj.get(field)):
+                add("JUDGMENT_SCOPE_MISSING", "major", "research_object."+field, "Specify jurisdiction and relevant timeframe")
+        judgments = obj.get("judgments", [])
+        if not isinstance(judgments, list) or not judgments:
+            add("JUDGMENT_SOURCE_MISSING", "major", "research_object.judgments", "Identify and inspect original judgment")
+        else:
+            for i, j in enumerate(judgments):
+                loc = f"research_object.judgments[{i}]"
+                if not isinstance(j, dict):
+                    add("JUDGMENT_INVALID", "critical", loc, "Expected judgment object")
+                    continue
+                for field in ("court", "case_id", "decision_date", "locator", "procedural_posture", "subsequent_status"):
+                    if not nonempty(j.get(field)):
+                        add("JUDGMENT_METADATA_MISSING", "major", loc+"."+field, "Record metadata or explicit unknown")
+                if j.get("inspection_status") != "inspected":
+                    add("JUDGMENT_SOURCE_UNVERIFIED", "major", loc, "Original text not inspected")
     elif t == "concept":
         usages = obj.get("concept_usages", [])
         if not isinstance(usages, list):
